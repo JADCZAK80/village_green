@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RubriqueRepository;
+use App\Repository\SousRubriqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RubriqueRepository::class)]
-class Rubrique
+#[ORM\Entity(repositoryClass: SousRubriqueRepository::class)]
+class SousRubrique
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,15 +24,18 @@ class Rubrique
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sousRubriques')]
+    private ?Rubrique $id_rubrique = null;
+
     /**
-     * @var Collection<int, SousRubrique>
+     * @var Collection<int, Article>
      */
-    #[ORM\OneToMany(targetEntity: SousRubrique::class, mappedBy: 'id_rubrique')]
-    private Collection $sousRubriques;
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'id_sous_rubrique')]
+    private Collection $articles;
 
     public function __construct()
     {
-        $this->sousRubriques = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,30 +79,42 @@ class Rubrique
         return $this;
     }
 
-    /**
-     * @return Collection<int, SousRubrique>
-     */
-    public function getSousRubriques(): Collection
+    public function getIdRubrique(): ?Rubrique
     {
-        return $this->sousRubriques;
+        return $this->id_rubrique;
     }
 
-    public function addSousRubrique(SousRubrique $sousRubrique): static
+    public function setIdRubrique(?Rubrique $id_rubrique): static
     {
-        if (!$this->sousRubriques->contains($sousRubrique)) {
-            $this->sousRubriques->add($sousRubrique);
-            $sousRubrique->setIdRubrique($this);
+        $this->id_rubrique = $id_rubrique;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): static
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setIdSousRubrique($this);
         }
 
         return $this;
     }
 
-    public function removeSousRubrique(SousRubrique $sousRubrique): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->sousRubriques->removeElement($sousRubrique)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($sousRubrique->getIdRubrique() === $this) {
-                $sousRubrique->setIdRubrique(null);
+            if ($article->getIdSousRubrique() === $this) {
+                $article->setIdSousRubrique(null);
             }
         }
 
