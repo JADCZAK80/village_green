@@ -31,7 +31,7 @@ class Livre
     /**
      * @var Collection<int, LivraisonArticle>
      */
-    #[ORM\ManyToMany(targetEntity: LivraisonArticle::class, mappedBy: 'id_livraison')]
+    #[ORM\OneToMany(targetEntity: LivraisonArticle::class, mappedBy: 'id_livraison')]
     private Collection $livraisonArticles;
 
     public function __construct()
@@ -104,7 +104,7 @@ class Livre
     {
         if (!$this->livraisonArticles->contains($livraisonArticle)) {
             $this->livraisonArticles->add($livraisonArticle);
-            $livraisonArticle->addIdLivraison($this);
+            $livraisonArticle->setIdLivraison($this);
         }
 
         return $this;
@@ -113,7 +113,10 @@ class Livre
     public function removeLivraisonArticle(LivraisonArticle $livraisonArticle): static
     {
         if ($this->livraisonArticles->removeElement($livraisonArticle)) {
-            $livraisonArticle->removeIdLivraison($this);
+            // set the owning side to null (unless already changed)
+            if ($livraisonArticle->getIdLivraison() === $this) {
+                $livraisonArticle->setIdLivraison(null);
+            }
         }
 
         return $this;

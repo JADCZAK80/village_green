@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ComposerDeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComposerDeRepository::class)]
@@ -16,22 +14,13 @@ class ComposerDe
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'composerDes')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Commande $id_commande = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'composerDes')]
-    private Collection $id_article;
+    #[ORM\ManyToOne(inversedBy: 'composerDes')]
+    private ?Article $id_article = null;
 
     #[ORM\Column]
     private ?int $nombre_article = null;
-
-    public function __construct()
-    {
-        $this->id_article = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -50,26 +39,14 @@ class ComposerDe
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getIdArticle(): Collection
+    public function getIdArticle(): ?Article
     {
         return $this->id_article;
     }
 
-    public function addIdArticle(Article $idArticle): static
+    public function setIdArticle(?Article $id_article): static
     {
-        if (!$this->id_article->contains($idArticle)) {
-            $this->id_article->add($idArticle);
-        }
-
-        return $this;
-    }
-
-    public function removeIdArticle(Article $idArticle): static
-    {
-        $this->id_article->removeElement($idArticle);
+        $this->id_article = $id_article;
 
         return $this;
     }

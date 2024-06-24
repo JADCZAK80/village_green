@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\FournitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FournitRepository::class)]
@@ -15,73 +13,37 @@ class Fournit
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @var Collection<int, Fournisseur>
-     */
-    #[ORM\ManyToMany(targetEntity: Fournisseur::class, inversedBy: 'fournits')]
-    private Collection $numéro_fournisseur;
+    #[ORM\ManyToOne(inversedBy: 'fournits')]
+    private ?Fournisseur $numéro_fournisseur = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'fournits')]
-    private Collection $id_article;
-
-    public function __construct()
-    {
-        $this->numéro_fournisseur = new ArrayCollection();
-        $this->id_article = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'fournits')]
+    private ?Article $id_article = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Fournisseur>
-     */
-    public function getNuméroFournisseur(): Collection
+    public function getNuméroFournisseur(): ?Fournisseur
     {
         return $this->numéro_fournisseur;
     }
 
-    public function addNumRoFournisseur(Fournisseur $numRoFournisseur): static
+    public function setNuméroFournisseur(?Fournisseur $numéro_fournisseur): static
     {
-        if (!$this->numéro_fournisseur->contains($numRoFournisseur)) {
-            $this->numéro_fournisseur->add($numRoFournisseur);
-        }
+        $this->numéro_fournisseur = $numéro_fournisseur;
 
         return $this;
     }
 
-    public function removeNumRoFournisseur(Fournisseur $numRoFournisseur): static
-    {
-        $this->numéro_fournisseur->removeElement($numRoFournisseur);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getIdArticle(): Collection
+    public function getIdArticle(): ?Article
     {
         return $this->id_article;
     }
 
-    public function addIdArticle(Article $idArticle): static
+    public function setIdArticle(?Article $id_article): static
     {
-        if (!$this->id_article->contains($idArticle)) {
-            $this->id_article->add($idArticle);
-        }
-
-        return $this;
-    }
-
-    public function removeIdArticle(Article $idArticle): static
-    {
-        $this->id_article->removeElement($idArticle);
+        $this->id_article = $id_article;
 
         return $this;
     }

@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\GereRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GereRepository::class)]
@@ -15,73 +13,37 @@ class Gere
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'geres')]
-    private Collection $id_aticle;
+    #[ORM\ManyToOne(inversedBy: 'geres')]
+    private ?Personnel $id_personnel = null;
 
-    /**
-     * @var Collection<int, Personnel>
-     */
-    #[ORM\ManyToMany(targetEntity: Personnel::class, inversedBy: 'geres')]
-    private Collection $matricule_personnel;
-
-    public function __construct()
-    {
-        $this->id_aticle = new ArrayCollection();
-        $this->matricule_personnel = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'geres')]
+    private ?Utilisateur $id_utilisateur = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getIdAticle(): Collection
+    public function getIdPersonnel(): ?Personnel
     {
-        return $this->id_aticle;
+        return $this->id_personnel;
     }
 
-    public function addIdAticle(Article $idAticle): static
+    public function setIdPersonnel(?Personnel $id_personnel): static
     {
-        if (!$this->id_aticle->contains($idAticle)) {
-            $this->id_aticle->add($idAticle);
-        }
+        $this->id_personnel = $id_personnel;
 
         return $this;
     }
 
-    public function removeIdAticle(Article $idAticle): static
+    public function getIdUtilisateur(): ?Utilisateur
     {
-        $this->id_aticle->removeElement($idAticle);
-
-        return $this;
+        return $this->id_utilisateur;
     }
 
-    /**
-     * @return Collection<int, Personnel>
-     */
-    public function getMatriculePersonnel(): Collection
+    public function setIdUtilisateur(?Utilisateur $id_utilisateur): static
     {
-        return $this->matricule_personnel;
-    }
-
-    public function addMatriculePersonnel(Personnel $matriculePersonnel): static
-    {
-        if (!$this->matricule_personnel->contains($matriculePersonnel)) {
-            $this->matricule_personnel->add($matriculePersonnel);
-        }
-
-        return $this;
-    }
-
-    public function removeMatriculePersonnel(Personnel $matriculePersonnel): static
-    {
-        $this->matricule_personnel->removeElement($matriculePersonnel);
+        $this->id_utilisateur = $id_utilisateur;
 
         return $this;
     }

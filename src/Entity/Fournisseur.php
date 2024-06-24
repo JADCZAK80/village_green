@@ -39,7 +39,7 @@ class Fournisseur
     /**
      * @var Collection<int, Fournit>
      */
-    #[ORM\ManyToMany(targetEntity: Fournit::class, mappedBy: 'numéro_fournisseur')]
+    #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'numéro_fournisseur')]
     private Collection $fournits;
 
     public function __construct()
@@ -148,7 +148,7 @@ class Fournisseur
     {
         if (!$this->fournits->contains($fournit)) {
             $this->fournits->add($fournit);
-            $fournit->addNumRoFournisseur($this);
+            $fournit->setNuméroFournisseur($this);
         }
 
         return $this;
@@ -157,7 +157,10 @@ class Fournisseur
     public function removeFournit(Fournit $fournit): static
     {
         if ($this->fournits->removeElement($fournit)) {
-            $fournit->removeNumRoFournisseur($this);
+            // set the owning side to null (unless already changed)
+            if ($fournit->getNuméroFournisseur() === $this) {
+                $fournit->setNuméroFournisseur(null);
+            }
         }
 
         return $this;

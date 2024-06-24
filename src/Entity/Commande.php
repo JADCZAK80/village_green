@@ -31,7 +31,7 @@ class Commande
     #[ORM\Column]
     private ?int $id_facture = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_facture = null;
 
     #[ORM\Column(length: 20)]
@@ -41,7 +41,7 @@ class Commande
     private ?string $adresse_facturation = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $etat_facturation = null;
+    private ?string $etat_facture = null;
 
     #[ORM\Column(length: 100)]
     private ?string $adresse_livraison = null;
@@ -49,11 +49,8 @@ class Commande
     #[ORM\Column(length: 20)]
     private ?string $etat_livraison = null;
 
-    /**
-     * @var Collection<int, ComposerDe>
-     */
-    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_commande')]
-    private Collection $composerDes;
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Utilisateur $id_utilisateur = null;
 
     /**
      * @var Collection<int, Livre>
@@ -61,10 +58,16 @@ class Commande
     #[ORM\OneToMany(targetEntity: Livre::class, mappedBy: 'id_commande')]
     private Collection $livres;
 
+    /**
+     * @var Collection<int, ComposerDe>
+     */
+    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_commande')]
+    private Collection $composerDes;
+
     public function __construct()
     {
-        $this->composerDes = new ArrayCollection();
         $this->livres = new ArrayCollection();
+        $this->composerDes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,14 +171,14 @@ class Commande
         return $this;
     }
 
-    public function getEtatFacturation(): ?string
+    public function getEtatFacture(): ?string
     {
-        return $this->etat_facturation;
+        return $this->etat_facture;
     }
 
-    public function setEtatFacturation(string $etat_facturation): static
+    public function setEtatFacture(string $etat_facture): static
     {
-        $this->etat_facturation = $etat_facturation;
+        $this->etat_facture = $etat_facture;
 
         return $this;
     }
@@ -204,32 +207,14 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return Collection<int, ComposerDe>
-     */
-    public function getComposerDes(): Collection
+    public function getIdUtilisateur(): ?Utilisateur
     {
-        return $this->composerDes;
+        return $this->id_utilisateur;
     }
 
-    public function addComposerDe(ComposerDe $composerDe): static
+    public function setIdUtilisateur(?Utilisateur $id_utilisateur): static
     {
-        if (!$this->composerDes->contains($composerDe)) {
-            $this->composerDes->add($composerDe);
-            $composerDe->setIdCommande($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComposerDe(ComposerDe $composerDe): static
-    {
-        if ($this->composerDes->removeElement($composerDe)) {
-            // set the owning side to null (unless already changed)
-            if ($composerDe->getIdCommande() === $this) {
-                $composerDe->setIdCommande(null);
-            }
-        }
+        $this->id_utilisateur = $id_utilisateur;
 
         return $this;
     }
@@ -258,6 +243,36 @@ class Commande
             // set the owning side to null (unless already changed)
             if ($livre->getIdCommande() === $this) {
                 $livre->setIdCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ComposerDe>
+     */
+    public function getComposerDes(): Collection
+    {
+        return $this->composerDes;
+    }
+
+    public function addComposerDe(ComposerDe $composerDe): static
+    {
+        if (!$this->composerDes->contains($composerDe)) {
+            $this->composerDes->add($composerDe);
+            $composerDe->setIdCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComposerDe(ComposerDe $composerDe): static
+    {
+        if ($this->composerDes->removeElement($composerDe)) {
+            // set the owning side to null (unless already changed)
+            if ($composerDe->getIdCommande() === $this) {
+                $composerDe->setIdCommande(null);
             }
         }
 

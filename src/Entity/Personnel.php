@@ -36,16 +36,16 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 30)]
     private ?string $matricule_personnel = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $prenom = null;
-
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $prénom = null;
+
+    #[ORM\Column(length: 100)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 50)]
     private ?string $téléphone = null;
 
     #[ORM\Column(length: 20)]
@@ -55,21 +55,21 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $code_postal = null;
 
     /**
-     * @var Collection<int, Encadre>
-     */
-    #[ORM\ManyToMany(targetEntity: Encadre::class, mappedBy: 'matricule_personnel')]
-    private Collection $encadres;
-
-    /**
      * @var Collection<int, Gere>
      */
-    #[ORM\ManyToMany(targetEntity: Gere::class, mappedBy: 'matricule_personnel')]
+    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'id_personnel')]
     private Collection $geres;
+
+    /**
+     * @var Collection<int, Encadre>
+     */
+    #[ORM\OneToMany(targetEntity: Encadre::class, mappedBy: 'matricule_personnel')]
+    private Collection $encadres;
 
     public function __construct()
     {
-        $this->encadres = new ArrayCollection();
         $this->geres = new ArrayCollection();
+        $this->encadres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,18 +159,6 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(?string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -183,12 +171,24 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getPrénom(): ?string
+    {
+        return $this->prénom;
+    }
+
+    public function setPrénom(?string $prénom): static
+    {
+        $this->prénom = $prénom;
+
+        return $this;
+    }
+
     public function getAdresse(): ?string
     {
         return $this->adresse;
     }
 
-    public function setAdresse(?string $adresse): static
+    public function setAdresse(string $adresse): static
     {
         $this->adresse = $adresse;
 
@@ -200,7 +200,7 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->téléphone;
     }
 
-    public function setTéléphone(?string $téléphone): static
+    public function setTéléphone(string $téléphone): static
     {
         $this->téléphone = $téléphone;
 
@@ -232,33 +232,6 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Encadre>
-     */
-    public function getEncadres(): Collection
-    {
-        return $this->encadres;
-    }
-
-    public function addEncadre(Encadre $encadre): static
-    {
-        if (!$this->encadres->contains($encadre)) {
-            $this->encadres->add($encadre);
-            $encadre->addMatriculePersonnel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEncadre(Encadre $encadre): static
-    {
-        if ($this->encadres->removeElement($encadre)) {
-            $encadre->removeMatriculePersonnel($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Gere>
      */
     public function getGeres(): Collection
@@ -270,7 +243,7 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->geres->contains($gere)) {
             $this->geres->add($gere);
-            $gere->addMatriculePersonnel($this);
+            $gere->setIdPersonnel($this);
         }
 
         return $this;
@@ -279,7 +252,40 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeGere(Gere $gere): static
     {
         if ($this->geres->removeElement($gere)) {
-            $gere->removeMatriculePersonnel($this);
+            // set the owning side to null (unless already changed)
+            if ($gere->getIdPersonnel() === $this) {
+                $gere->setIdPersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Encadre>
+     */
+    public function getEncadres(): Collection
+    {
+        return $this->encadres;
+    }
+
+    public function addEncadre(Encadre $encadre): static
+    {
+        if (!$this->encadres->contains($encadre)) {
+            $this->encadres->add($encadre);
+            $encadre->setMatriculePersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEncadre(Encadre $encadre): static
+    {
+        if ($this->encadres->removeElement($encadre)) {
+            // set the owning side to null (unless already changed)
+            if ($encadre->getMatriculePersonnel() === $this) {
+                $encadre->setMatriculePersonnel(null);
+            }
         }
 
         return $this;

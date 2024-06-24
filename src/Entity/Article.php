@@ -31,34 +31,27 @@ class Article
     private ?SousRubrique $id_sous_rubrique = null;
 
     /**
-     * @var Collection<int, ComposerDe>
-     */
-    #[ORM\ManyToMany(targetEntity: ComposerDe::class, mappedBy: 'id_article')]
-    private Collection $composerDes;
-
-    /**
      * @var Collection<int, Fournit>
      */
-    #[ORM\ManyToMany(targetEntity: Fournit::class, mappedBy: 'id_article')]
+    #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'id_article')]
     private Collection $fournits;
 
     /**
-     * @var Collection<int, Gere>
+     * @var Collection<int, ComposerDe>
      */
-    #[ORM\ManyToMany(targetEntity: Gere::class, mappedBy: 'id_aticle')]
-    private Collection $geres;
+    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_article')]
+    private Collection $composerDes;
 
     /**
      * @var Collection<int, LivraisonArticle>
      */
-    #[ORM\ManyToMany(targetEntity: LivraisonArticle::class, mappedBy: 'id_article')]
+    #[ORM\OneToMany(targetEntity: LivraisonArticle::class, mappedBy: 'id_article')]
     private Collection $livraisonArticles;
 
     public function __construct()
     {
-        $this->composerDes = new ArrayCollection();
         $this->fournits = new ArrayCollection();
-        $this->geres = new ArrayCollection();
+        $this->composerDes = new ArrayCollection();
         $this->livraisonArticles = new ArrayCollection();
     }
 
@@ -128,33 +121,6 @@ class Article
     }
 
     /**
-     * @return Collection<int, ComposerDe>
-     */
-    public function getComposerDes(): Collection
-    {
-        return $this->composerDes;
-    }
-
-    public function addComposerDe(ComposerDe $composerDe): static
-    {
-        if (!$this->composerDes->contains($composerDe)) {
-            $this->composerDes->add($composerDe);
-            $composerDe->addIdArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComposerDe(ComposerDe $composerDe): static
-    {
-        if ($this->composerDes->removeElement($composerDe)) {
-            $composerDe->removeIdArticle($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Fournit>
      */
     public function getFournits(): Collection
@@ -166,7 +132,7 @@ class Article
     {
         if (!$this->fournits->contains($fournit)) {
             $this->fournits->add($fournit);
-            $fournit->addIdArticle($this);
+            $fournit->setIdArticle($this);
         }
 
         return $this;
@@ -175,34 +141,40 @@ class Article
     public function removeFournit(Fournit $fournit): static
     {
         if ($this->fournits->removeElement($fournit)) {
-            $fournit->removeIdArticle($this);
+            // set the owning side to null (unless already changed)
+            if ($fournit->getIdArticle() === $this) {
+                $fournit->setIdArticle(null);
+            }
         }
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Gere>
+     * @return Collection<int, ComposerDe>
      */
-    public function getGeres(): Collection
+    public function getComposerDes(): Collection
     {
-        return $this->geres;
+        return $this->composerDes;
     }
 
-    public function addGere(Gere $gere): static
+    public function addComposerDe(ComposerDe $composerDe): static
     {
-        if (!$this->geres->contains($gere)) {
-            $this->geres->add($gere);
-            $gere->addIdAticle($this);
+        if (!$this->composerDes->contains($composerDe)) {
+            $this->composerDes->add($composerDe);
+            $composerDe->setIdArticle($this);
         }
 
         return $this;
     }
 
-    public function removeGere(Gere $gere): static
+    public function removeComposerDe(ComposerDe $composerDe): static
     {
-        if ($this->geres->removeElement($gere)) {
-            $gere->removeIdAticle($this);
+        if ($this->composerDes->removeElement($composerDe)) {
+            // set the owning side to null (unless already changed)
+            if ($composerDe->getIdArticle() === $this) {
+                $composerDe->setIdArticle(null);
+            }
         }
 
         return $this;
@@ -220,7 +192,7 @@ class Article
     {
         if (!$this->livraisonArticles->contains($livraisonArticle)) {
             $this->livraisonArticles->add($livraisonArticle);
-            $livraisonArticle->addIdArticle($this);
+            $livraisonArticle->setIdArticle($this);
         }
 
         return $this;
@@ -229,7 +201,10 @@ class Article
     public function removeLivraisonArticle(LivraisonArticle $livraisonArticle): static
     {
         if ($this->livraisonArticles->removeElement($livraisonArticle)) {
-            $livraisonArticle->removeIdArticle($this);
+            // set the owning side to null (unless already changed)
+            if ($livraisonArticle->getIdArticle() === $this) {
+                $livraisonArticle->setIdArticle(null);
+            }
         }
 
         return $this;

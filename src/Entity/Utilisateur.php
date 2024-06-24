@@ -52,7 +52,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $ville = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $téléphone = null;
+    private ?string $Téléphone = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $réduction = null;
@@ -61,13 +61,27 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $type = null;
 
     /**
+     * @var Collection<int, Commande>
+     */
+    #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'id_utilisateur')]
+    private Collection $commandes;
+
+    /**
+     * @var Collection<int, Gere>
+     */
+    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'id_utilisateur')]
+    private Collection $geres;
+
+    /**
      * @var Collection<int, Encadre>
      */
-    #[ORM\ManyToMany(targetEntity: Encadre::class, mappedBy: 'id_utilisateur')]
+    #[ORM\OneToMany(targetEntity: Encadre::class, mappedBy: 'id_utilisateur')]
     private Collection $encadres;
 
     public function __construct()
     {
+        $this->commandes = new ArrayCollection();
+        $this->geres = new ArrayCollection();
         $this->encadres = new ArrayCollection();
     }
 
@@ -220,12 +234,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getTéléphone(): ?string
     {
-        return $this->téléphone;
+        return $this->Téléphone;
     }
 
-    public function setTéléphone(string $téléphone): static
+    public function setTéléphone(string $Téléphone): static
     {
-        $this->téléphone = $téléphone;
+        $this->Téléphone = $Téléphone;
 
         return $this;
     }
@@ -255,6 +269,66 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setIdUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getIdUtilisateur() === $this) {
+                $commande->setIdUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gere>
+     */
+    public function getGeres(): Collection
+    {
+        return $this->geres;
+    }
+
+    public function addGere(Gere $gere): static
+    {
+        if (!$this->geres->contains($gere)) {
+            $this->geres->add($gere);
+            $gere->setIdUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGere(Gere $gere): static
+    {
+        if ($this->geres->removeElement($gere)) {
+            // set the owning side to null (unless already changed)
+            if ($gere->getIdUtilisateur() === $this) {
+                $gere->setIdUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection<int, Encadre>
      */
     public function getEncadres(): Collection
@@ -266,7 +340,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->encadres->contains($encadre)) {
             $this->encadres->add($encadre);
-            $encadre->addIdUtilisateur($this);
+            $encadre->setIdUtilisateur($this);
         }
 
         return $this;
@@ -275,7 +349,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeEncadre(Encadre $encadre): static
     {
         if ($this->encadres->removeElement($encadre)) {
-            $encadre->removeIdUtilisateur($this);
+            // set the owning side to null (unless already changed)
+            if ($encadre->getIdUtilisateur() === $this) {
+                $encadre->setIdUtilisateur(null);
+            }
         }
 
         return $this;
