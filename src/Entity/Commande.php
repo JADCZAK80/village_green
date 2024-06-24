@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +48,24 @@ class Commande
 
     #[ORM\Column(length: 20)]
     private ?string $etat_livraison = null;
+
+    /**
+     * @var Collection<int, ComposerDe>
+     */
+    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_commande')]
+    private Collection $composerDes;
+
+    /**
+     * @var Collection<int, Livre>
+     */
+    #[ORM\OneToMany(targetEntity: Livre::class, mappedBy: 'id_commande')]
+    private Collection $livres;
+
+    public function __construct()
+    {
+        $this->composerDes = new ArrayCollection();
+        $this->livres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +200,66 @@ class Commande
     public function setEtatLivraison(string $etat_livraison): static
     {
         $this->etat_livraison = $etat_livraison;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ComposerDe>
+     */
+    public function getComposerDes(): Collection
+    {
+        return $this->composerDes;
+    }
+
+    public function addComposerDe(ComposerDe $composerDe): static
+    {
+        if (!$this->composerDes->contains($composerDe)) {
+            $this->composerDes->add($composerDe);
+            $composerDe->setIdCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComposerDe(ComposerDe $composerDe): static
+    {
+        if ($this->composerDes->removeElement($composerDe)) {
+            // set the owning side to null (unless already changed)
+            if ($composerDe->getIdCommande() === $this) {
+                $composerDe->setIdCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Livre>
+     */
+    public function getLivres(): Collection
+    {
+        return $this->livres;
+    }
+
+    public function addLivre(Livre $livre): static
+    {
+        if (!$this->livres->contains($livre)) {
+            $this->livres->add($livre);
+            $livre->setIdCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivre(Livre $livre): static
+    {
+        if ($this->livres->removeElement($livre)) {
+            // set the owning side to null (unless already changed)
+            if ($livre->getIdCommande() === $this) {
+                $livre->setIdCommande(null);
+            }
+        }
 
         return $this;
     }

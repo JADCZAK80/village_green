@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -57,6 +59,17 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 20)]
     private ?string $type = null;
+
+    /**
+     * @var Collection<int, Encadre>
+     */
+    #[ORM\ManyToMany(targetEntity: Encadre::class, mappedBy: 'id_utilisateur')]
+    private Collection $encadres;
+
+    public function __construct()
+    {
+        $this->encadres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -237,6 +250,33 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setType(string $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Encadre>
+     */
+    public function getEncadres(): Collection
+    {
+        return $this->encadres;
+    }
+
+    public function addEncadre(Encadre $encadre): static
+    {
+        if (!$this->encadres->contains($encadre)) {
+            $this->encadres->add($encadre);
+            $encadre->addIdUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEncadre(Encadre $encadre): static
+    {
+        if ($this->encadres->removeElement($encadre)) {
+            $encadre->removeIdUtilisateur($this);
+        }
 
         return $this;
     }

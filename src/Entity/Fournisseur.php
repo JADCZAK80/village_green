@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FournisseurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
@@ -33,6 +35,17 @@ class Fournisseur
 
     #[ORM\Column(length: 20)]
     private ?string $code_postal = null;
+
+    /**
+     * @var Collection<int, Fournit>
+     */
+    #[ORM\ManyToMany(targetEntity: Fournit::class, mappedBy: 'numéro_fournisseur')]
+    private Collection $fournits;
+
+    public function __construct()
+    {
+        $this->fournits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +132,33 @@ class Fournisseur
     public function setCodePostal(string $code_postal): static
     {
         $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fournit>
+     */
+    public function getFournits(): Collection
+    {
+        return $this->fournits;
+    }
+
+    public function addFournit(Fournit $fournit): static
+    {
+        if (!$this->fournits->contains($fournit)) {
+            $this->fournits->add($fournit);
+            $fournit->addNumRoFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFournit(Fournit $fournit): static
+    {
+        if ($this->fournits->removeElement($fournit)) {
+            $fournit->removeNumRoFournisseur($this);
+        }
 
         return $this;
     }
