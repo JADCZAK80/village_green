@@ -13,7 +13,8 @@ class Fournit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'fournits')]
+    #[ORM\ManyToOne(targetEntity: Fournisseur::class)]
+    #[ORM\JoinColumn(name: "numéro_fournisseur", referencedColumnName: "numéro_fournisseur")]
     private ?Fournisseur $numéro_fournisseur = null;
 
     #[ORM\ManyToOne(inversedBy: 'fournits')]
