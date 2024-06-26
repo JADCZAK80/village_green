@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Fournisseur;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -310,6 +311,119 @@ class AppFixtures extends Fixture
         $manager -> persist($article21);
 
         //Fin des articles.
+        //Début Fournisseur.
+
+        $fournisseur1 = new Fournisseur();
+        $fournisseur1 -> setNuméroFournisseur("272-06-5061");
+        $fournisseur1 -> setNom("Omega Protein Corporation");
+        $fournisseur1 -> setAdresse("Apt 1425");
+        $fournisseur1 -> setPays("China");
+        $fournisseur1 -> setVille("Lingbei");
+        $fournisseur1 -> setTéléphone("988-523-1996");
+        $fournisseur1 -> setCodePostal("");
+
+        $manager ->persist($fournisseur1);
+
+        $fournisseur2 = new Fournisseur();
+        $fournisseur2 -> setNuméroFournisseur("314-44-1522");
+        $fournisseur2 -> setNom("BP p.l.c.");
+        $fournisseur2 -> setAdresse("17th Floor");
+        $fournisseur2 -> setPays("Philippines");
+        $fournisseur2 -> setVille("San Jose");
+        $fournisseur2 -> setTéléphone("701-605-2925");
+        $fournisseur2 -> setCodePostal("8427");
+
+        $manager ->persist($fournisseur2);
+
+        $fournisseur3 = new Fournisseur();
+        $fournisseur3 -> setNuméroFournisseur("431-40-3894");
+        $fournisseur3 -> setNom("Celestica, Inc.");
+        $fournisseur3 -> setAdresse("Room 1572");
+        $fournisseur3 -> setPays("China");
+        $fournisseur3 -> setVille("Hengshan");
+        $fournisseur3 -> setTéléphone("389-738-5886");
+        $fournisseur3 -> setCodePostal("");
+
+        $manager ->persist($fournisseur3);
+
+        $fournisseur4 = new Fournisseur();
+        $fournisseur4 -> setNuméroFournisseur("467-98-9455");
+        $fournisseur4 -> setNom("Evertec, Inc.");
+        $fournisseur4 -> setAdresse("Apt 709");
+        $fournisseur4 -> setPays("China");
+        $fournisseur4 -> setVille("Shanxi");
+        $fournisseur4 -> setTéléphone("606-430-5957");
+        $fournisseur4 -> setCodePostal("");
+
+        $manager ->persist($fournisseur4);
+
+        $fournisseur5 = new Fournisseur();
+        $fournisseur5 -> setNuméroFournisseur("490-14-2726");
+        $fournisseur5 -> setNom("Armstrong World Industries Inc");
+        $fournisseur5 -> setAdresse("7th Floor");
+        $fournisseur5 -> setPays("Poland");
+        $fournisseur5 -> setVille("Dobra");
+        $fournisseur5 -> setTéléphone("251-355-5618");
+        $fournisseur5 -> setCodePostal("72-210");
+
+        $manager ->persist($fournisseur5);
+
+        $fournisseur6 = new Fournisseur();
+        $fournisseur6 -> setNuméroFournisseur("663-72-8566");
+        $fournisseur6 -> setNom("Richmont Mines, Inc.");
+        $fournisseur6 -> setAdresse("PO Box 25724");
+        $fournisseur6 -> setPays("Ukraine");
+        $fournisseur6 -> setVille("Fontanka");
+        $fournisseur6 -> setTéléphone("532-238-0234");
+        $fournisseur6 -> setCodePostal("");
+
+        $manager ->persist($fournisseur6);
+
+        $fournisseur7 = new Fournisseur();
+        $fournisseur7 -> setNuméroFournisseur("706-78-5806");
+        $fournisseur7 -> setNom("Bonanza Creek Energy, Inc.");
+        $fournisseur7 -> setAdresse("Apt 229");
+        $fournisseur7 -> setPays("Russia");
+        $fournisseur7 -> setVille("Novozavedennoye");
+        $fournisseur7 -> setTéléphone("784-332-2536");
+        $fournisseur7 -> setCodePostal("357813");
+
+        $manager ->persist($fournisseur7);
+
+        $fournisseur8 = new Fournisseur();
+        $fournisseur8 -> setNuméroFournisseur("750-35-0406");
+        $fournisseur8 -> setNom("TrueCar, Inc.");
+        $fournisseur8 -> setAdresse("PO Box 22055");
+        $fournisseur8 -> setPays("Mexico");
+        $fournisseur8 -> setVille("Santiago");
+        $fournisseur8 -> setTéléphone("774-708-5322");
+        $fournisseur8 -> setCodePostal("54784");
+
+        $manager ->persist($fournisseur8);
+
+        $fournisseur9 = new Fournisseur();
+        $fournisseur9 -> setNuméroFournisseur("801-59-9912");
+        $fournisseur9 -> setNom("Kenon Holdings Ltd.");
+        $fournisseur9 -> setAdresse("PO Box 65049");
+        $fournisseur9 -> setPays("China");
+        $fournisseur9 -> setVille("Shataping");
+        $fournisseur9 -> setTéléphone("135-131-0684");
+        $fournisseur9 -> setCodePostal("");
+
+        $manager ->persist($fournisseur9);
+
+        $fournisseur10 = new Fournisseur();
+        $fournisseur10 -> setNuméroFournisseur("865-64-9469");
+        $fournisseur10 -> setNom("Exxon Mobil Corporation");
+        $fournisseur10 -> setAdresse("PO Box 53794");
+        $fournisseur10 -> setPays("Sweden");
+        $fournisseur10 -> setVille("Bollstabruk");
+        $fournisseur10 -> setTéléphone("480-709-3122");
+        $fournisseur10 -> setCodePostal("873 80");
+
+        $manager ->persist($fournisseur10);
+
+        //Fin des Fournisseurs.
 
         $manager->flush();
     }
