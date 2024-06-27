@@ -9,14 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Fournit
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\ManyToOne(targetEntity: Fournisseur::class)]
     #[ORM\JoinColumn(name: "numéro_fournisseur", referencedColumnName: "numéro_fournisseur")]
     private ?Fournisseur $numéro_fournisseur = null;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'fournits')]
     private ?Article $id_article = null;
 

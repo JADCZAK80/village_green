@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Fournisseur;
+use App\Entity\Fournit;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -424,6 +425,13 @@ class AppFixtures extends Fixture
         $manager ->persist($fournisseur10);
 
         //Fin des Fournisseurs.
+        //Debut Fournit.
+
+        $fournit1 = new Fournit();
+        $fournit1 -> setNuméroFournisseur($fournisseur1);
+        $fournit1 -> setIdArticle($article1);
+
+        $manager -> persist($fournit1);
 
         $manager->flush();
     }
