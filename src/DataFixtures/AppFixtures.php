@@ -433,6 +433,128 @@ class AppFixtures extends Fixture
 
         $manager -> persist($fournit1);
 
+        $fournit2 = new Fournit();
+        $fournit2 -> setNuméroFournisseur($fournisseur1);
+        $fournit2 -> setIdArticle($article11);
+
+        $manager -> persist($fournit2);
+
+        $fournit3 = new Fournit();
+        $fournit3 -> setNuméroFournisseur($fournisseur1);
+        $fournit3 -> setIdArticle($article21);
+
+        $manager -> persist($fournit3);
+
+        $fournit4 = new Fournit();
+        $fournit4 -> setNuméroFournisseur($fournisseur2);
+        $fournit4 -> setIdArticle($article2);
+
+        $manager -> persist($fournit4);
+
+        $fournit5 = new Fournit();
+        $fournit5 -> setNuméroFournisseur($fournisseur2);
+        $fournit5 -> setIdArticle($article12);
+
+        $manager -> persist($fournit5);
+
+        $fournit6 = new Fournit();
+        $fournit6 -> setNuméroFournisseur($fournisseur3);
+        $fournit6 -> setIdArticle($article3);
+
+        $manager -> persist($fournit6);
+
+        $fournit7 = new Fournit();
+        $fournit7 -> setNuméroFournisseur($fournisseur3);
+        $fournit7 -> setIdArticle($article13);
+
+        $manager -> persist($fournit7);
+
+        $fournit8 = new Fournit();
+        $fournit8 -> setNuméroFournisseur($fournisseur4);
+        $fournit8 -> setIdArticle($article4);
+
+        $manager -> persist($fournit8);
+
+        $fournit9 = new Fournit();
+        $fournit9 -> setNuméroFournisseur($fournisseur4);
+        $fournit9 -> setIdArticle($article14);
+
+        $manager -> persist($fournit9);
+
+        $fournit10 = new Fournit();
+        $fournit10 -> setNuméroFournisseur($fournisseur5);
+        $fournit10 -> setIdArticle($article5);
+
+        $manager -> persist($fournit10);
+
+        //Mi-Fournit
+
+        $fournit11 = new Fournit();
+        $fournit11 -> setNuméroFournisseur($fournisseur5);
+        $fournit11 -> setIdArticle($article15);
+
+        $manager -> persist($fournit11);
+
+        $fournit12 = new Fournit();
+        $fournit12 -> setNuméroFournisseur($fournisseur6);
+        $fournit12 -> setIdArticle($article6);
+
+        $manager -> persist($fournit12);
+
+        $fournit13 = new Fournit();
+        $fournit13 -> setNuméroFournisseur($fournisseur6);
+        $fournit13 -> setIdArticle($article16);
+
+        $manager -> persist($fournit13);
+
+        $fournit14 = new Fournit();
+        $fournit14 -> setNuméroFournisseur($fournisseur7);
+        $fournit14 -> setIdArticle($article7);
+
+        $manager -> persist($fournit14);
+
+        $fournit15 = new Fournit();
+        $fournit15 -> setNuméroFournisseur($fournisseur7);
+        $fournit15 -> setIdArticle($article17);
+
+        $manager -> persist($fournit15);
+
+        $fournit16 = new Fournit();
+        $fournit16 -> setNuméroFournisseur($fournisseur8);
+        $fournit16 -> setIdArticle($article8);
+
+        $manager -> persist($fournit16);
+
+        $fournit17 = new Fournit();
+        $fournit17 -> setNuméroFournisseur($fournisseur8);
+        $fournit17 -> setIdArticle($article18);
+
+        $manager -> persist($fournit17);
+
+        $fournit18 = new Fournit();
+        $fournit18 -> setNuméroFournisseur($fournisseur9);
+        $fournit18 -> setIdArticle($article9);
+
+        $manager -> persist($fournit18);
+
+        $fournit19 = new Fournit();
+        $fournit19 -> setNuméroFournisseur($fournisseur9);
+        $fournit19 -> setIdArticle($article19);
+
+        $manager -> persist($fournit19);
+
+        $fournit20 = new Fournit();
+        $fournit20 -> setNuméroFournisseur($fournisseur10);
+        $fournit20 -> setIdArticle($article10);
+
+        $manager -> persist($fournit20);
+
+        $fournit21 = new Fournit();
+        $fournit21 -> setNuméroFournisseur($fournisseur10);
+        $fournit21 -> setIdArticle($article20);
+
+        $manager -> persist($fournit21);
+
         $manager->flush();
     }
     
