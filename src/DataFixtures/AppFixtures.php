@@ -5,18 +5,28 @@ namespace App\DataFixtures;
 use App\Entity\Article;
 use App\Entity\Fournisseur;
 use App\Entity\Fournit;
+use App\Entity\Personnel;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    //hashage du mot de passe.
+    private $passwordHasher;
 
-
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+    //fin du hashage.
 
     public function load(ObjectManager $manager): void
     {
+        
         // Définition des différents rubriques.
 
         $rubrique1 = new Rubrique();
@@ -554,6 +564,114 @@ class AppFixtures extends Fixture
         $fournit21 -> setIdArticle($article20);
 
         $manager -> persist($fournit21);
+
+        //Fin Des données Fournit.
+
+        //Début des utilisateurs.
+
+        $utilisateur1 = new Utilisateur();
+        $utilisateur1 -> setEmail("marc.dupont@gmail.com");
+        //hashage du mot de passe.
+        $hashedPassword = $this->passwordHasher->hashPassword($utilisateur1,'1Tunnel');
+        $utilisateur1 -> setPassword($hashedPassword);
+        $utilisateur1 -> setRoles(['USER']);
+        $utilisateur1 -> setNom("DUPONT");
+        $utilisateur1 -> setPrénom("Marc");
+        $utilisateur1 -> setAdresse("9 rue des pont");
+        $utilisateur1 -> setCodePostal("80090");
+        $utilisateur1 -> setPays("FRANCE");
+        $utilisateur1 -> setVille("AMIENS");
+        $utilisateur1 -> setTéléphone("06/12/69/85/12");
+        $utilisateur1 -> setRéduction(10.00);
+        $utilisateur1 -> setType("spéciale");
+
+        $manager -> persist($utilisateur1);
+        
+        $utilisateur2 = new Utilisateur();
+        $utilisateur2 -> setEmail("marie.dupond@gmail.fr");
+        $hashedPassword = $this->passwordHasher->hashPassword($utilisateur2,'1Vortex');
+        $utilisateur2 -> setPassword($hashedPassword);
+        $utilisateur2 -> setRoles(['USER']);
+        $utilisateur2 -> setNom("DUPOND");
+        $utilisateur2 -> setPrénom("Marie");
+        $utilisateur2 -> setAdresse("94 rue des porcs-épique");
+        $utilisateur2 -> setCodePostal("85090");
+        $utilisateur2 -> setPays("FRANCE");
+        $utilisateur2 -> setVille("DOUX");
+        $utilisateur2 -> setTéléphone("06/14/71/47/58");
+        $utilisateur2 -> setType("particulier");
+
+        $manager -> persist($utilisateur2);
+
+        $utilisateur3 = new Utilisateur();
+        $utilisateur3 -> setEmail("cesar.cap@hotmail.fr");
+        $hashedPassword = $this->passwordHasher->hashPassword($utilisateur3,'2Gaulois');
+        $utilisateur3 -> setPassword($hashedPassword);
+        $utilisateur3 -> setRoles(['USER']);
+        $utilisateur3 -> setNom("CAP");
+        $utilisateur3 -> setPrénom("Cesar");
+        $utilisateur3 -> setAdresse("45 rue des laurier");
+        $utilisateur3 -> setCodePostal("84090");
+        $utilisateur3 -> setPays("FRANCE");
+        $utilisateur3 -> setVille("AMER");
+        $utilisateur3 -> setTéléphone("06/17/32/47/63");
+        $utilisateur3 -> setRéduction(30.00);
+        $utilisateur3 -> setType("spéciale");
+
+        $manager -> persist($utilisateur3);
+
+        $utilisateur4 = new Utilisateur();
+        $utilisateur4 -> setEmail("didier.inconnu@gmail.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($utilisateur4,'1Connu');
+        $utilisateur4 -> setPassword($hashedPassword);
+        $utilisateur4 -> setRoles(['USER']);
+        $utilisateur4 -> setNom("INCONNU");
+        $utilisateur4 -> setPrénom("Didier");
+        $utilisateur4 -> setAdresse("9 rue des impasses");
+        $utilisateur4 -> setCodePostal("90000");
+        $utilisateur4 -> setPays("FRANCE");
+        $utilisateur4 -> setVille("PARTER");
+        $utilisateur4 -> setTéléphone("06/10/80/00/00");
+        $utilisateur4 -> setType("particulier");
+
+        $manager -> persist($utilisateur4);
+
+        $utilisateur5 = new Utilisateur();
+        $utilisateur5 -> setEmail("belle.bella@gmail.fr");
+        $hashedPassword = $this->passwordHasher->hashPassword($utilisateur5,'1Bgelle');
+        $utilisateur5 -> setPassword($hashedPassword);
+        $utilisateur5 -> setRoles(['USER']);
+        $utilisateur5 -> setNom("BELLA");
+        $utilisateur5 -> setPrénom("Belle");
+        $utilisateur5 -> setAdresse("90 rue des champs");
+        $utilisateur5 -> setCodePostal("60000");
+        $utilisateur5 -> setPays("FRANCE");
+        $utilisateur5 -> setVille("ROSE");
+        $utilisateur5 -> setTéléphone("06/18/50/77/88");
+        $utilisateur5 -> setRéduction(12.00);
+        $utilisateur5 -> setType("spéciale");
+
+        $manager -> persist($utilisateur5);
+
+        //Fin des Utilisateurs.
+
+        //Début des membres du Personnel
+
+        $personnel1 = new Personnel();
+        $personnel1 -> setEmail("pedro.alcapone@village_green.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($personnel1,'M1tra1lette');
+        $personnel1 -> setPassword($hashedPassword);
+        $personnel1 -> setRoles(['USER','CHEF']);
+        $personnel1 -> setMatriculePersonnel("FED-4868-FES");
+        $personnel1 -> setNom("ALCAPONE");
+        $personnel1 -> setPrénom("Pedro");
+        $personnel1 -> setAdresse("4 rue des lilas");
+        $personnel1 -> setTéléphone("07/15/82/72/89");
+        $personnel1 -> setService("COMMERCIAL");
+        $personnel1 -> setCodePostal(" 84450");
+
+        $manager -> persist($personnel1);
+
 
         $manager->flush();
     }
