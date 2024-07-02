@@ -66,11 +66,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'id_utilisateur')]
     private Collection $commandes;
 
-    /**
-     * @var Collection<int, Gere>
-     */
-    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'id_utilisateur')]
-    private Collection $geres;
+
 
     /**
      * @var Collection<int, Encadre>
@@ -298,35 +294,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Gere>
-     */
-    public function getGeres(): Collection
-    {
-        return $this->geres;
-    }
-
-    public function addGere(Gere $gere): static
-    {
-        if (!$this->geres->contains($gere)) {
-            $this->geres->add($gere);
-            $gere->setIdUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGere(Gere $gere): static
-    {
-        if ($this->geres->removeElement($gere)) {
-            // set the owning side to null (unless already changed)
-            if ($gere->getIdUtilisateur() === $this) {
-                $gere->setIdUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Encadre>

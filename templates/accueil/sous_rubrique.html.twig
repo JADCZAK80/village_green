@@ -11,12 +11,12 @@
 {%include "partials/_header.html.twig" %}
 <div class="container ">
     <div class="d-flex justify-content-center">
-        <h1>Liste des rubriques</h1>
+        <h1>Liste des sous-rubriques</h1>
     </div>
     <div class="row">
-        {% for rubriques in rubrique %}
+        {% for rubriques in sousRubrique %}
             <div class="col-sm-4 col-12 mt-2 mb-2">
-            <a href="{{path('app_sous_rubrique', {'id_rubrique': rubriques.id})}}">
+             <a href="{{path('app_article', {'id_sous_rubrique': rubriques.id})}}">
                 <div class="card mt-4 pt-4">
                     <div class="d-flex justify-content-center">
                         <img src="{{ asset('uploads/images/' ~ rubriques.image) }}" alt="{{ rubriques.libellecourt}}" width="100">
@@ -29,7 +29,7 @@
                     </div>
                     
                 </div>
-            </a>
+            </a> 
             </div>
         {% endfor %}
     </div>

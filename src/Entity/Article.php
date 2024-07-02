@@ -48,11 +48,18 @@ class Article
     #[ORM\OneToMany(targetEntity: LivraisonArticle::class, mappedBy: 'id_article')]
     private Collection $livraisonArticles;
 
+    /**
+     * @var Collection<int, Gere>
+     */
+    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'article')]
+    private Collection $geres;
+
     public function __construct()
     {
         $this->fournits = new ArrayCollection();
         $this->composerDes = new ArrayCollection();
         $this->livraisonArticles = new ArrayCollection();
+        $this->geres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +211,36 @@ class Article
             // set the owning side to null (unless already changed)
             if ($livraisonArticle->getIdArticle() === $this) {
                 $livraisonArticle->setIdArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gere>
+     */
+    public function getGeres(): Collection
+    {
+        return $this->geres;
+    }
+
+    public function addGere(Gere $gere): static
+    {
+        if (!$this->geres->contains($gere)) {
+            $this->geres->add($gere);
+            $gere->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGere(Gere $gere): static
+    {
+        if ($this->geres->removeElement($gere)) {
+            // set the owning side to null (unless already changed)
+            if ($gere->getArticle() === $this) {
+                $gere->setArticle(null);
             }
         }
 

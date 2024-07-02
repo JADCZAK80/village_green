@@ -3,8 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Encadre;
 use App\Entity\Fournisseur;
 use App\Entity\Fournit;
+use App\Entity\Gere;
 use App\Entity\Personnel;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
@@ -668,10 +670,233 @@ class AppFixtures extends Fixture
         $personnel1 -> setAdresse("4 rue des lilas");
         $personnel1 -> setTéléphone("07/15/82/72/89");
         $personnel1 -> setService("COMMERCIAL");
-        $personnel1 -> setCodePostal(" 84450");
+        $personnel1 -> setCodePostal("84450");
 
         $manager -> persist($personnel1);
 
+        $personnel2 = new Personnel();
+        $personnel2 -> setEmail("magalax.licorne@village_green.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($personnel2,'M@tr@que');
+        $personnel2 -> setPassword($hashedPassword);
+        $personnel2 -> setRoles(['USER','CHEF','GESTION']);
+        $personnel2 -> setMatriculePersonnel("MAX-6858-LUX");
+        $personnel2 -> setNom("LICORNE");
+        $personnel2 -> setPrénom("Magalax");
+        $personnel2 -> setAdresse("13 rue des arc-en-ciel");
+        $personnel2 -> setTéléphone("09/12/40/89/69");
+        $personnel2 -> setService("GESTION");
+        $personnel2 -> setCodePostal("84450");
+
+        $manager -> persist($personnel2);
+
+        $personnel3 = new Personnel();
+        $personnel3 -> setEmail("eric.popo@village_green.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($personnel3,'1KaKa00');
+        $personnel3 -> setPassword($hashedPassword);
+        $personnel3 -> setRoles(['USER']);
+        $personnel3 -> setMatriculePersonnel("POP-0088-POP");
+        $personnel3 -> setNom("POPO");
+        $personnel3 -> setPrénom("Eric");
+        $personnel3 -> setAdresse("67 rue des déchets");
+        $personnel3 -> setTéléphone("07/18/69/71/29");
+        $personnel3 -> setService("COMMERCIAL");
+        $personnel3 -> setCodePostal("84450");
+
+        $manager -> persist($personnel3);
+
+        $personnel4 = new Personnel();
+        $personnel4 -> setEmail("aline.unknow@village_green.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($personnel4,'JeSa1sPas');
+        $personnel4 -> setPassword($hashedPassword);
+        $personnel4 -> setRoles(['USER']);
+        $personnel4 -> setMatriculePersonnel("UNK-0000-NOW");
+        $personnel4 -> setNom("UNKNOW");
+        $personnel4 -> setPrénom("Aline");
+        $personnel4 -> setAdresse("1 allée de la plage");
+        $personnel4 -> setTéléphone("07/15/82/72/89");
+        $personnel4 -> setService("COMMERCIAL");
+        $personnel4 -> setCodePostal("84482");
+
+        $manager -> persist($personnel4);
+
+        $personnel5 = new Personnel();
+        $personnel5 -> setEmail("pablo.escobar@village_green.com");
+        $hashedPassword = $this->passwordHasher->hashPassword($personnel5,'1Traf1que');
+        $personnel5 -> setPassword($hashedPassword);
+        $personnel5 -> setRoles(['USER','CHEF','GESTION','ADMIN']);
+        $personnel5 -> setMatriculePersonnel("ZDE-4568-AZE");
+        $personnel5 -> setNom("ESCOBAR");
+        $personnel5 -> setPrénom("Pablo");
+        $personnel5 -> setAdresse("9 rue des coques");
+        $personnel5 -> setTéléphone("07/01/02/52/87");
+        $personnel5 -> setService("DIRECTION");
+        $personnel5 -> setCodePostal("84550");
+
+        $manager -> persist($personnel5);
+
+        //Fin des membres du Personnel.
+        //Début Encadre.
+
+        $encadre1 = new Encadre();
+        $encadre1 -> setMatriculePersonnel($personnel4);
+        $encadre1 -> setIdUtilisateur($utilisateur1);
+
+        $manager -> persist($encadre1);
+
+        $encadre2 = new Encadre();
+        $encadre2 -> setMatriculePersonnel($personnel3);
+        $encadre2 -> setIdUtilisateur($utilisateur2);
+
+        $manager -> persist($encadre2);
+
+        $encadre3 = new Encadre();
+        $encadre3 -> setMatriculePersonnel($personnel4);
+        $encadre3 -> setIdUtilisateur($utilisateur3);
+
+        $manager -> persist($encadre3);
+
+        $encadre4 = new Encadre();
+        $encadre4 -> setMatriculePersonnel($personnel3);
+        $encadre4 -> setIdUtilisateur($utilisateur4);
+
+        $manager -> persist($encadre4);
+
+        $encadre5 = new Encadre();
+        $encadre5 -> setMatriculePersonnel($personnel4);
+        $encadre5 -> setIdUtilisateur($utilisateur5);
+
+        $manager -> persist($encadre5);
+
+        //Fin Encadre.
+        //Début Gere.
+
+        $gere1 = new Gere();
+        $gere1 -> setArticle($article1);
+        $gere1 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere1);
+
+        $gere2 = new Gere();
+        $gere2 -> setArticle($article2);
+        $gere2 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere2);
+
+        $gere3 = new Gere();
+        $gere3 -> setArticle($article3);
+        $gere3 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere3);
+
+        $gere4 = new Gere();
+        $gere4 -> setArticle($article4);
+        $gere4 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere4);
+
+        $gere5 = new Gere();
+        $gere5 -> setArticle($article5);
+        $gere5 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere5);
+
+        $gere6 = new Gere();
+        $gere6 -> setArticle($article6);
+        $gere6 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere6);
+
+        $gere7 = new Gere();
+        $gere7 -> setArticle($article7);
+        $gere7 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere7);
+
+        $gere8 = new Gere();
+        $gere8 -> setArticle($article8);
+        $gere8 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere8);
+
+        $gere9 = new Gere();
+        $gere9 -> setArticle($article9);
+        $gere9 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere9);
+
+        $gere10 = new Gere();
+        $gere10 -> setArticle($article10);
+        $gere10 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere10);
+
+        $gere11 = new Gere();
+        $gere11 -> setArticle($article11);
+        $gere11 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere11);
+
+        $gere12 = new Gere();
+        $gere12 -> setArticle($article12);
+        $gere12 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere12);
+
+        $gere13 = new Gere();
+        $gere13 -> setArticle($article13);
+        $gere13 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere13);
+
+        $gere14 = new Gere();
+        $gere14 -> setArticle($article14);
+        $gere14 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere14);
+
+        $gere15 = new Gere();
+        $gere15 -> setArticle($article15);
+        $gere15 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere15);
+
+        $gere16 = new Gere();
+        $gere16 -> setArticle($article16);
+        $gere16 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere16);
+
+        $gere17 = new Gere();
+        $gere17 -> setArticle($article17);
+        $gere17 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere17);
+
+        $gere18 = new Gere();
+        $gere18 -> setArticle($article18);
+        $gere18 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere18);
+
+        $gere19 = new Gere();
+        $gere19 -> setArticle($article19);
+        $gere19 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere19);
+
+        $gere20 = new Gere();
+        $gere20 -> setArticle($article20);
+        $gere20 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere20);
+
+        $gere21 = new Gere();
+        $gere21 -> setArticle($article21);
+        $gere21 -> setPersonnel($personnel2);
+
+        $manager -> persist($gere21);
+
+        //Fin Gere.
 
         $manager->flush();
     }

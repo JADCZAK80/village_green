@@ -54,11 +54,6 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20)]
     private ?string $code_postal = null;
 
-    /**
-     * @var Collection<int, Gere>
-     */
-    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'id_personnel')]
-    private Collection $geres;
 
     /**
      * @var Collection<int, Encadre>
@@ -66,10 +61,16 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Encadre::class, mappedBy: 'matricule_personnel')]
     private Collection $encadres;
 
+    /**
+     * @var Collection<int, Gere>
+     */
+    #[ORM\OneToMany(targetEntity: Gere::class, mappedBy: 'personnel')]
+    private Collection $geres;
+
     public function __construct()
     {
-        $this->geres = new ArrayCollection();
         $this->encadres = new ArrayCollection();
+        $this->geres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,35 +232,8 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Gere>
-     */
-    public function getGeres(): Collection
-    {
-        return $this->geres;
-    }
 
-    public function addGere(Gere $gere): static
-    {
-        if (!$this->geres->contains($gere)) {
-            $this->geres->add($gere);
-            $gere->setIdPersonnel($this);
-        }
 
-        return $this;
-    }
-
-    public function removeGere(Gere $gere): static
-    {
-        if ($this->geres->removeElement($gere)) {
-            // set the owning side to null (unless already changed)
-            if ($gere->getIdPersonnel() === $this) {
-                $gere->setIdPersonnel(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Encadre>
@@ -285,6 +259,36 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($encadre->getMatriculePersonnel() === $this) {
                 $encadre->setMatriculePersonnel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gere>
+     */
+    public function getGeres(): Collection
+    {
+        return $this->geres;
+    }
+
+    public function addGere(Gere $gere): static
+    {
+        if (!$this->geres->contains($gere)) {
+            $this->geres->add($gere);
+            $gere->setPersonnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGere(Gere $gere): static
+    {
+        if ($this->geres->removeElement($gere)) {
+            // set the owning side to null (unless already changed)
+            if ($gere->getPersonnel() === $this) {
+                $gere->setPersonnel(null);
             }
         }
 

@@ -14,36 +14,36 @@ class Gere
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'geres')]
-    private ?Personnel $personnel = null;
+    private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'geres')]
-    private ?Utilisateur $utilisateur = null;
+    private ?Personnel $personnel = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdPersonnel(): ?Personnel
+    public function getArticle(): ?Article
     {
-        return $this->personnel;
+        return $this->article;
     }
 
-    public function setIdPersonnel(?Personnel $personnel): static
+    public function setArticle(?Article $article): static
     {
-        $this->personnel = $personnel;
+        $this->article = $article;
 
         return $this;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
+    public function getPersonnel(): ?Personnel
     {
-        return $this->utilisateur;
+        return $this->personnel;
     }
 
-    public function setIdUtilisateur(?Utilisateur $utilisateur): static
+    public function setPersonnel(?Personnel $personnel): static
     {
-        $this->utilisateur = $utilisateur;
+        $this->personnel = $personnel;
 
         return $this;
     }
