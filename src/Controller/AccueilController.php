@@ -67,4 +67,20 @@ class AccueilController extends AbstractController
             'produit' => $produit,
         ]);
     }
+    #[Route('/detail/{id_article}', name: 'app_detail', methods: ['GET'])]
+    public function ArticleDetail(ArticleRepository $articleRepository, int $id_article): Response
+    {
+        $produit = $articleRepository->find($id_article);
+    
+        if(!$produit) {
+            throw $this->createNotFoundException('article non trouvé');
+        }
+    
+        $article = $articleRepository->findBy(['id' => $id_article]);
+    
+        return $this->render('accueil/detail.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
 }

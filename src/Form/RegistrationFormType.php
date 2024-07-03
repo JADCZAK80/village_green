@@ -72,6 +72,7 @@ class RegistrationFormType extends AbstractType
             ->add('_type', HiddenType::class, [
                 'data' => 'particulier',
             ])
+            
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
