@@ -56,4 +56,15 @@ class AccueilController extends AbstractController
             'article' => $article,
         ]);
     }
+
+    #[Route('/produit', name: 'app_produit')]
+    public function Produit(ArticleRepository $articleRepository): Response
+    {
+        $produit = $articleRepository->findAll();
+
+        return $this->render('accueil/produit.html.twig', [
+            'controller_name' => 'AccueilController',
+            'produit' => $produit,
+        ]);
+    }
 }

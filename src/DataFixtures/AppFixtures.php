@@ -578,14 +578,15 @@ class AppFixtures extends Fixture
         $utilisateur1 -> setPassword($hashedPassword);
         $utilisateur1 -> setRoles(['USER']);
         $utilisateur1 -> setNom("DUPONT");
-        $utilisateur1 -> setPrénom("Marc");
+        $utilisateur1 -> setPrenom("Marc");
         $utilisateur1 -> setAdresse("9 rue des pont");
         $utilisateur1 -> setCodePostal("80090");
         $utilisateur1 -> setPays("FRANCE");
         $utilisateur1 -> setVille("AMIENS");
-        $utilisateur1 -> setTéléphone("06/12/69/85/12");
-        $utilisateur1 -> setRéduction(10.00);
+        $utilisateur1 -> setTelephone("06/12/69/85/12");
+        $utilisateur1 -> setReduction(10.00);
         $utilisateur1 -> setType("spéciale");
+        $utilisateur1 -> setVerified(true);
 
         $manager -> persist($utilisateur1);
         
@@ -595,13 +596,14 @@ class AppFixtures extends Fixture
         $utilisateur2 -> setPassword($hashedPassword);
         $utilisateur2 -> setRoles(['USER']);
         $utilisateur2 -> setNom("DUPOND");
-        $utilisateur2 -> setPrénom("Marie");
+        $utilisateur2 -> setPrenom("Marie");
         $utilisateur2 -> setAdresse("94 rue des porcs-épique");
         $utilisateur2 -> setCodePostal("85090");
         $utilisateur2 -> setPays("FRANCE");
         $utilisateur2 -> setVille("DOUX");
-        $utilisateur2 -> setTéléphone("06/14/71/47/58");
+        $utilisateur2 -> setTelephone("06/14/71/47/58");
         $utilisateur2 -> setType("particulier");
+        $utilisateur2 -> setVerified(true);
 
         $manager -> persist($utilisateur2);
 
@@ -611,14 +613,15 @@ class AppFixtures extends Fixture
         $utilisateur3 -> setPassword($hashedPassword);
         $utilisateur3 -> setRoles(['USER']);
         $utilisateur3 -> setNom("CAP");
-        $utilisateur3 -> setPrénom("Cesar");
+        $utilisateur3 -> setPrenom("Cesar");
         $utilisateur3 -> setAdresse("45 rue des laurier");
         $utilisateur3 -> setCodePostal("84090");
         $utilisateur3 -> setPays("FRANCE");
         $utilisateur3 -> setVille("AMER");
-        $utilisateur3 -> setTéléphone("06/17/32/47/63");
-        $utilisateur3 -> setRéduction(30.00);
+        $utilisateur3 -> setTelephone("06/17/32/47/63");
+        $utilisateur3 -> setReduction(30.00);
         $utilisateur3 -> setType("spéciale");
+        $utilisateur3 -> setVerified(true);
 
         $manager -> persist($utilisateur3);
 
@@ -628,13 +631,14 @@ class AppFixtures extends Fixture
         $utilisateur4 -> setPassword($hashedPassword);
         $utilisateur4 -> setRoles(['USER']);
         $utilisateur4 -> setNom("INCONNU");
-        $utilisateur4 -> setPrénom("Didier");
+        $utilisateur4 -> setPrenom("Didier");
         $utilisateur4 -> setAdresse("9 rue des impasses");
         $utilisateur4 -> setCodePostal("90000");
         $utilisateur4 -> setPays("FRANCE");
         $utilisateur4 -> setVille("PARTER");
-        $utilisateur4 -> setTéléphone("06/10/80/00/00");
+        $utilisateur4 -> setTelephone("06/10/80/00/00");
         $utilisateur4 -> setType("particulier");
+        $utilisateur4 -> setVerified(true);
 
         $manager -> persist($utilisateur4);
 
@@ -644,14 +648,15 @@ class AppFixtures extends Fixture
         $utilisateur5 -> setPassword($hashedPassword);
         $utilisateur5 -> setRoles(['USER']);
         $utilisateur5 -> setNom("BELLA");
-        $utilisateur5 -> setPrénom("Belle");
+        $utilisateur5 -> setPrenom("Belle");
         $utilisateur5 -> setAdresse("90 rue des champs");
         $utilisateur5 -> setCodePostal("60000");
         $utilisateur5 -> setPays("FRANCE");
         $utilisateur5 -> setVille("ROSE");
-        $utilisateur5 -> setTéléphone("06/18/50/77/88");
-        $utilisateur5 -> setRéduction(12.00);
+        $utilisateur5 -> setTelephone("06/18/50/77/88");
+        $utilisateur5 -> setReduction(12.00);
         $utilisateur5 -> setType("spéciale");
+        $utilisateur5 -> setVerified(true);
 
         $manager -> persist($utilisateur5);
 
@@ -660,7 +665,7 @@ class AppFixtures extends Fixture
         //Début des membres du Personnel
 
         $personnel1 = new Personnel();
-        $personnel1 -> setEmail("pedro.alcapone@village_green.com");
+        $personnel1 -> setEmail("pedro.alcapone@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel1,'M1tra1lette');
         $personnel1 -> setPassword($hashedPassword);
         $personnel1 -> setRoles(['USER','CHEF']);
@@ -675,7 +680,7 @@ class AppFixtures extends Fixture
         $manager -> persist($personnel1);
 
         $personnel2 = new Personnel();
-        $personnel2 -> setEmail("magalax.licorne@village_green.com");
+        $personnel2 -> setEmail("magalax.licorne@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel2,'M@tr@que');
         $personnel2 -> setPassword($hashedPassword);
         $personnel2 -> setRoles(['USER','CHEF','GESTION']);
@@ -690,7 +695,7 @@ class AppFixtures extends Fixture
         $manager -> persist($personnel2);
 
         $personnel3 = new Personnel();
-        $personnel3 -> setEmail("eric.popo@village_green.com");
+        $personnel3 -> setEmail("eric.popo@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel3,'1KaKa00');
         $personnel3 -> setPassword($hashedPassword);
         $personnel3 -> setRoles(['USER']);
@@ -705,7 +710,7 @@ class AppFixtures extends Fixture
         $manager -> persist($personnel3);
 
         $personnel4 = new Personnel();
-        $personnel4 -> setEmail("aline.unknow@village_green.com");
+        $personnel4 -> setEmail("aline.unknow@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel4,'JeSa1sPas');
         $personnel4 -> setPassword($hashedPassword);
         $personnel4 -> setRoles(['USER']);
@@ -720,7 +725,7 @@ class AppFixtures extends Fixture
         $manager -> persist($personnel4);
 
         $personnel5 = new Personnel();
-        $personnel5 -> setEmail("pablo.escobar@village_green.com");
+        $personnel5 -> setEmail("pablo.escobar@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel5,'1Traf1que');
         $personnel5 -> setPassword($hashedPassword);
         $personnel5 -> setRoles(['USER','CHEF','GESTION','ADMIN']);

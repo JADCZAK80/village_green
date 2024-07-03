@@ -17,10 +17,6 @@ class Fournit
     #[ORM\ManyToOne(inversedBy: 'fournits')]
     private ?Article $id_article = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getNuméroFournisseur(): ?Fournisseur
     {

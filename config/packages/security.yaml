@@ -5,7 +5,15 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        # Le chain provider me permet de tester les deux base de donnée pour la connexion et d'avoir un seul login form
+        chain_provider:
+            chain:
+                providers: [app_utilisateur_provider, app_personnel_provider]
+        app_utilisateur_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: email
+        app_personnel_provider:
             entity:
                 class: App\Entity\Personnel
                 property: email
@@ -18,7 +26,16 @@ security:
             security: false
         main:
             lazy: true
-            provider: app_user_provider
+            #Ne pas oublier de changer le main firewalls provider sur le chain_provider
+            provider: chain_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

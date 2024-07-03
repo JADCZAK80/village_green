@@ -43,11 +43,6 @@ class Fournisseur
         $this->fournits = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getNuméroFournisseur(): ?string
     {
         return $this->numéro_fournisseur;

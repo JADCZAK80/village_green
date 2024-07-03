@@ -6,11 +6,13 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -37,7 +39,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $prénom = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
@@ -52,10 +54,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $ville = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $Téléphone = null;
+    private ?string $Telephone = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $réduction = null;
+    #[ORM\Column(nullable: true, type: "decimal", precision: 15, scale: 2)]
+    private ?string $reduction = null;
 
     #[ORM\Column(length: 20)]
     private ?string $type = null;
@@ -74,10 +76,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Encadre::class, mappedBy: 'id_utilisateur')]
     private Collection $encadres;
 
+    #[ORM\Column]
+    private bool $isVerified = false;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
-        $this->geres = new ArrayCollection();
         $this->encadres = new ArrayCollection();
     }
 
@@ -168,14 +172,14 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPrénom(): ?string
+    public function getprenom(): ?string
     {
-        return $this->prénom;
+        return $this->prenom;
     }
 
-    public function setPrénom(string $prénom): static
+    public function setprenom(string $prenom): static
     {
-        $this->prénom = $prénom;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -228,26 +232,26 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTéléphone(): ?string
+    public function getTelephone(): ?string
     {
-        return $this->Téléphone;
+        return $this->Telephone;
     }
 
-    public function setTéléphone(string $Téléphone): static
+    public function setTelephone(string $Telephone): static
     {
-        $this->Téléphone = $Téléphone;
+        $this->Telephone = $Telephone;
 
         return $this;
     }
 
-    public function getRéduction(): ?float
+    public function getreduction(): ?string
     {
-        return $this->réduction;
+        return $this->reduction;
     }
 
-    public function setRéduction(?float $réduction): static
+    public function setreduction(?string $reduction): static
     {
-        $this->réduction = $réduction;
+        $this->reduction = $reduction;
 
         return $this;
     }
@@ -321,6 +325,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
                 $encadre->setIdUtilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

@@ -24,8 +24,8 @@ class Article
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?float $prix_HT = null;
+    #[ORM\Column(type: "decimal", precision: 15, scale: 2)]
+    private ?string $prix_HT = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?SousRubrique $id_sous_rubrique = null;
@@ -103,12 +103,12 @@ class Article
         return $this;
     }
 
-    public function getPrixHT(): ?float
+    public function getPrixHT(): ?string
     {
         return $this->prix_HT;
     }
 
-    public function setPrixHT(float $prix_HT): static
+    public function setPrixHT(string $prix_HT): static
     {
         $this->prix_HT = $prix_HT;
 

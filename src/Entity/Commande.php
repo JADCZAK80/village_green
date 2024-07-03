@@ -19,14 +19,14 @@ class Commande
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_commande = null;
 
-    #[ORM\Column]
-    private ?float $montant_commande_HT = null;
+    #[ORM\Column(type: "decimal", precision: 15, scale: 2)]
+    private ?string $montant_commande_HT = null;
 
-    #[ORM\Column]
-    private ?float $montant_commande_TTC = null;
+    #[ORM\Column(type: "decimal", precision: 15, scale: 2)]
+    private ?string $montant_commande_TTC = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $TVA = null;
+    #[ORM\Column(nullable: true, type: "decimal", precision: 15, scale: 2)]
+    private ?string $TVA = null;
 
     #[ORM\Column]
     private ?int $id_facture = null;
@@ -87,36 +87,36 @@ class Commande
         return $this;
     }
 
-    public function getMontantCommandeHT(): ?float
+    public function getMontantCommandeHT(): ?string
     {
         return $this->montant_commande_HT;
     }
 
-    public function setMontantCommandeHT(float $montant_commande_HT): static
+    public function setMontantCommandeHT(string $montant_commande_HT): static
     {
         $this->montant_commande_HT = $montant_commande_HT;
 
         return $this;
     }
 
-    public function getMontantCommandeTTC(): ?float
+    public function getMontantCommandeTTC(): ?string
     {
         return $this->montant_commande_TTC;
     }
 
-    public function setMontantCommandeTTC(float $montant_commande_TTC): static
+    public function setMontantCommandeTTC(string $montant_commande_TTC): static
     {
         $this->montant_commande_TTC = $montant_commande_TTC;
 
         return $this;
     }
 
-    public function getTVA(): ?float
+    public function getTVA(): ?string
     {
         return $this->TVA;
     }
 
-    public function setTVA(?float $TVA): static
+    public function setTVA(?string $TVA): static
     {
         $this->TVA = $TVA;
 
