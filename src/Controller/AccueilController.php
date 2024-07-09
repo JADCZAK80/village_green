@@ -32,7 +32,7 @@ class AccueilController extends AbstractController
             throw $this->createNotFoundException('Rubrique non trouvé');
         }
 
-        $sousRubrique = $sousRubriqueRepository->findBy(['id_rubrique' => $id_rubrique]);
+        $sousRubrique = $sousRubriqueRepository->findBy(['rubrique' => $id_rubrique]);
 
         return $this->render('accueil/sous_rubrique.html.twig', [
             'rubrique' => $rubrique,
@@ -49,7 +49,7 @@ class AccueilController extends AbstractController
             throw $this->createNotFoundException('Sous-rubrique non trouvé');
         }
 
-        $article = $articleRepository->findBy(['id_sous_rubrique' => $id_sous_rubrique]);
+        $article = $articleRepository->findBy(['sous_rubrique' => $id_sous_rubrique]);
 
         return $this->render('accueil/article_id.html.twig', [
             'sousRubrique' => $sousRubrique,

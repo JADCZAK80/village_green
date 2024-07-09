@@ -28,7 +28,7 @@ class Article
     private ?string $prix_HT = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?SousRubrique $id_sous_rubrique = null;
+    private ?SousRubrique $sous_rubrique = null;
 
     /**
      * @var Collection<int, Fournit>
@@ -117,12 +117,12 @@ class Article
 
     public function getIdSousRubrique(): ?SousRubrique
     {
-        return $this->id_sous_rubrique;
+        return $this->sous_rubrique;
     }
 
-    public function setIdSousRubrique(?SousRubrique $id_sous_rubrique): static
+    public function setIdSousRubrique(?SousRubrique $sous_rubrique): static
     {
-        $this->id_sous_rubrique = $id_sous_rubrique;
+        $this->sous_rubrique = $sous_rubrique;
 
         return $this;
     }

@@ -14,10 +14,10 @@ class ComposerDe
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'composerDes')]
-    private ?Commande $id_commande = null;
+    private ?Commande $commande = null;
 
     #[ORM\ManyToOne(inversedBy: 'composerDes')]
-    private ?Article $id_article = null;
+    private ?Article $article = null;
 
     #[ORM\Column]
     private ?int $nombre_article = null;
@@ -29,24 +29,24 @@ class ComposerDe
 
     public function getIdCommande(): ?Commande
     {
-        return $this->id_commande;
+        return $this->commande;
     }
 
-    public function setIdCommande(?Commande $id_commande): static
+    public function setIdCommande(?Commande $commande): static
     {
-        $this->id_commande = $id_commande;
+        $this->commande = $commande;
 
         return $this;
     }
 
     public function getIdArticle(): ?Article
     {
-        return $this->id_article;
+        return $this->article;
     }
 
-    public function setIdArticle(?Article $id_article): static
+    public function setIdArticle(?Article $article): static
     {
-        $this->id_article = $id_article;
+        $this->article = $article;
 
         return $this;
     }

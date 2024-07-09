@@ -15,7 +15,7 @@ class Fournit
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'fournits')]
-    private ?Article $id_article = null;
+    private ?Article $article = null;
 
 
     public function getNuméroFournisseur(): ?Fournisseur
@@ -32,12 +32,12 @@ class Fournit
 
     public function getIdArticle(): ?Article
     {
-        return $this->id_article;
+        return $this->article;
     }
 
-    public function setIdArticle(?Article $id_article): static
+    public function setIdArticle(?Article $article): static
     {
-        $this->id_article = $id_article;
+        $this->article = $article;
 
         return $this;
     }

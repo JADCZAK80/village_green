@@ -576,7 +576,7 @@ class AppFixtures extends Fixture
         //hashage du mot de passe.
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur1,'1Tunnel');
         $utilisateur1 -> setPassword($hashedPassword);
-        $utilisateur1 -> setRoles(['USER']);
+        $utilisateur1 -> setRoles(['ROLE_USER']);
         $utilisateur1 -> setNom("DUPONT");
         $utilisateur1 -> setPrenom("Marc");
         $utilisateur1 -> setAdresse("9 rue des pont");
@@ -594,7 +594,7 @@ class AppFixtures extends Fixture
         $utilisateur2 -> setEmail("marie.dupond@gmail.fr");
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur2,'1Vortex');
         $utilisateur2 -> setPassword($hashedPassword);
-        $utilisateur2 -> setRoles(['USER']);
+        $utilisateur2 -> setRoles(['ROLE_USER']);
         $utilisateur2 -> setNom("DUPOND");
         $utilisateur2 -> setPrenom("Marie");
         $utilisateur2 -> setAdresse("94 rue des porcs-épique");
@@ -611,7 +611,7 @@ class AppFixtures extends Fixture
         $utilisateur3 -> setEmail("cesar.cap@hotmail.fr");
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur3,'2Gaulois');
         $utilisateur3 -> setPassword($hashedPassword);
-        $utilisateur3 -> setRoles(['USER']);
+        $utilisateur3 -> setRoles(['ROLE_USER']);
         $utilisateur3 -> setNom("CAP");
         $utilisateur3 -> setPrenom("Cesar");
         $utilisateur3 -> setAdresse("45 rue des laurier");
@@ -629,7 +629,7 @@ class AppFixtures extends Fixture
         $utilisateur4 -> setEmail("didier.inconnu@gmail.com");
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur4,'1Connu');
         $utilisateur4 -> setPassword($hashedPassword);
-        $utilisateur4 -> setRoles(['USER']);
+        $utilisateur4 -> setRoles(['ROLE_USER']);
         $utilisateur4 -> setNom("INCONNU");
         $utilisateur4 -> setPrenom("Didier");
         $utilisateur4 -> setAdresse("9 rue des impasses");
@@ -646,7 +646,7 @@ class AppFixtures extends Fixture
         $utilisateur5 -> setEmail("belle.bella@gmail.fr");
         $hashedPassword = $this->passwordHasher->hashPassword($utilisateur5,'1Bgelle');
         $utilisateur5 -> setPassword($hashedPassword);
-        $utilisateur5 -> setRoles(['USER']);
+        $utilisateur5 -> setRoles(['ROLE_USER']);
         $utilisateur5 -> setNom("BELLA");
         $utilisateur5 -> setPrenom("Belle");
         $utilisateur5 -> setAdresse("90 rue des champs");
@@ -668,7 +668,7 @@ class AppFixtures extends Fixture
         $personnel1 -> setEmail("pedro.alcapone@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel1,'M1tra1lette');
         $personnel1 -> setPassword($hashedPassword);
-        $personnel1 -> setRoles(['USER','CHEF']);
+        $personnel1 -> setRoles(['ROLE_USER','ROLE_CHEF']);
         $personnel1 -> setMatriculePersonnel("FED-4868-FES");
         $personnel1 -> setNom("ALCAPONE");
         $personnel1 -> setPrénom("Pedro");
@@ -683,7 +683,7 @@ class AppFixtures extends Fixture
         $personnel2 -> setEmail("magalax.licorne@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel2,'M@tr@que');
         $personnel2 -> setPassword($hashedPassword);
-        $personnel2 -> setRoles(['USER','CHEF','GESTION']);
+        $personnel2 -> setRoles(['ROLE_USER','ROLE_CHEF','ROLE_GESTION']);
         $personnel2 -> setMatriculePersonnel("MAX-6858-LUX");
         $personnel2 -> setNom("LICORNE");
         $personnel2 -> setPrénom("Magalax");
@@ -698,7 +698,7 @@ class AppFixtures extends Fixture
         $personnel3 -> setEmail("eric.popo@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel3,'1KaKa00');
         $personnel3 -> setPassword($hashedPassword);
-        $personnel3 -> setRoles(['USER']);
+        $personnel3 -> setRoles(['ROLE_USER']);
         $personnel3 -> setMatriculePersonnel("POP-0088-POP");
         $personnel3 -> setNom("POPO");
         $personnel3 -> setPrénom("Eric");
@@ -713,7 +713,7 @@ class AppFixtures extends Fixture
         $personnel4 -> setEmail("aline.unknow@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel4,'JeSa1sPas');
         $personnel4 -> setPassword($hashedPassword);
-        $personnel4 -> setRoles(['USER']);
+        $personnel4 -> setRoles(['ROLE_USER']);
         $personnel4 -> setMatriculePersonnel("UNK-0000-NOW");
         $personnel4 -> setNom("UNKNOW");
         $personnel4 -> setPrénom("Aline");
@@ -728,7 +728,7 @@ class AppFixtures extends Fixture
         $personnel5 -> setEmail("pablo.escobar@villagegreen.com");
         $hashedPassword = $this->passwordHasher->hashPassword($personnel5,'1Traf1que');
         $personnel5 -> setPassword($hashedPassword);
-        $personnel5 -> setRoles(['USER','CHEF','GESTION','ADMIN']);
+        $personnel5 -> setRoles(['ROLE_USER','ROLE_CHEF','ROLE_GESTION','ROLE_ADMIN']);
         $personnel5 -> setMatriculePersonnel("ZDE-4568-AZE");
         $personnel5 -> setNom("ESCOBAR");
         $personnel5 -> setPrénom("Pablo");

@@ -50,7 +50,7 @@ class Commande
     private ?string $etat_livraison = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?Utilisateur $id_utilisateur = null;
+    private ?Utilisateur $utilisateur = null;
 
     /**
      * @var Collection<int, Livre>
@@ -61,7 +61,7 @@ class Commande
     /**
      * @var Collection<int, ComposerDe>
      */
-    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_commande')]
+    #[ORM\OneToMany(targetEntity: ComposerDe::class, mappedBy: 'id_commande', orphanRemoval: true, cascade: ['persist'])]
     private Collection $composerDes;
 
     public function __construct()
@@ -209,12 +209,12 @@ class Commande
 
     public function getIdUtilisateur(): ?Utilisateur
     {
-        return $this->id_utilisateur;
+        return $this->utilisateur;
     }
 
-    public function setIdUtilisateur(?Utilisateur $id_utilisateur): static
+    public function setIdUtilisateur(?Utilisateur $utilisateur): static
     {
-        $this->id_utilisateur = $id_utilisateur;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

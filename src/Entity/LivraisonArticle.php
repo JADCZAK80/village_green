@@ -14,10 +14,10 @@ class LivraisonArticle
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'livraisonArticles')]
-    private ?Article $id_article = null;
+    private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'livraisonArticles')]
-    private ?Livre $id_livraison = null;
+    private ?Livre $livraison = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $quantité_livré = null;
@@ -29,24 +29,24 @@ class LivraisonArticle
 
     public function getIdArticle(): ?Article
     {
-        return $this->id_article;
+        return $this->article;
     }
 
-    public function setIdArticle(?Article $id_article): static
+    public function setIdArticle(?Article $article): static
     {
-        $this->id_article = $id_article;
+        $this->article = $article;
 
         return $this;
     }
 
     public function getIdLivraison(): ?Livre
     {
-        return $this->id_livraison;
+        return $this->livraison;
     }
 
-    public function setIdLivraison(?Livre $id_livraison): static
+    public function setIdLivraison(?Livre $livraison): static
     {
-        $this->id_livraison = $id_livraison;
+        $this->livraison = $livraison;
 
         return $this;
     }

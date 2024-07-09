@@ -17,7 +17,7 @@ class Encadre
     private ?Personnel $matricule_personnel = null;
 
     #[ORM\ManyToOne(inversedBy: 'encadres')]
-    private ?Utilisateur $id_utilisateur = null;
+    private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int
     {
@@ -38,12 +38,12 @@ class Encadre
 
     public function getIdUtilisateur(): ?Utilisateur
     {
-        return $this->id_utilisateur;
+        return $this->utilisateur;
     }
 
-    public function setIdUtilisateur(?Utilisateur $id_utilisateur): static
+    public function setIdUtilisateur(?Utilisateur $utilisateur): static
     {
-        $this->id_utilisateur = $id_utilisateur;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

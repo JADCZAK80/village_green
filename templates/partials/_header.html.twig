@@ -21,6 +21,21 @@
                 </li>
                 {% endif %}
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'panier_index' %}active{% endif %}" href="{{ path('panier_index') }}">🛒
+                        <span class="visually-hidden">(current)
+                    </a>
+                </li>
+
+                </span>
+                <li class="nav-item pt-2 px-1">              
+                                      <span class="badge rounded-pill bg-info ">
+                                        {{ render(controller(
+                                            'App\\Controller\\PanierController::calcul_quantite'
+                                        )) }}
+                                    </span></li>
                             {% if app.user %}
           {# Utilisateur connecté, afficher le lien de déconnexion #}
           <a href="{{ path('app_logout') }}" class="btn btn-secondary my-2 my-sm-0">Logout</a>
@@ -29,6 +44,17 @@
           <a href="{{ path('app_login') }}" class="btn btn-secondary my-2 my-sm-0">Login</a>
           <a href="{{ path('app_register') }}" class="btn btn-secondary my-2 my-sm-0">Register</a>
         {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
+<div>{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert-message">
+                {{ message|raw }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}</div>

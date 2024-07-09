@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -93,5 +94,19 @@ class PanierController extends AbstractController
         $session->remove('panier');
 
         return $this->redirectToRoute('panier_index');
+    }
+    public function calcul_quantite(SessionInterface $session): Response
+    {
+        $panier = $session->get("panier", []);
+        $quantite_totale = 0;
+
+        foreach ($panier as $id => $quantite) {
+            $quantite_totale += $quantite;
+        }
+
+
+        return $this->render('panier/quantite_totale.html.twig', [
+            'quantite_totale' => $quantite_totale,
+        ]);
     }
 }

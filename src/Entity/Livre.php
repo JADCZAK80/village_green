@@ -26,7 +26,7 @@ class Livre
     private ?string $nom_transporteur = null;
 
     #[ORM\ManyToOne(inversedBy: 'livres')]
-    private ?Commande $id_commande = null;
+    private ?Commande $commande = null;
 
     /**
      * @var Collection<int, LivraisonArticle>
@@ -82,12 +82,12 @@ class Livre
 
     public function getIdCommande(): ?Commande
     {
-        return $this->id_commande;
+        return $this->commande;
     }
 
-    public function setIdCommande(?Commande $id_commande): static
+    public function setIdCommande(?Commande $commande): static
     {
-        $this->id_commande = $id_commande;
+        $this->commande = $commande;
 
         return $this;
     }

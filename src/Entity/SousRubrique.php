@@ -25,7 +25,7 @@ class SousRubrique
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'sousRubriques')]
-    private ?Rubrique $id_rubrique = null;
+    private ?Rubrique $rubrique = null;
 
     /**
      * @var Collection<int, Article>
@@ -83,12 +83,12 @@ class SousRubrique
 
     public function getIdRubrique(): ?Rubrique
     {
-        return $this->id_rubrique;
+        return $this->rubrique;
     }
 
-    public function setIdRubrique(?Rubrique $id_rubrique): static
+    public function setIdRubrique(?Rubrique $rubrique): static
     {
-        $this->id_rubrique = $id_rubrique;
+        $this->rubrique = $rubrique;
 
         return $this;
     }

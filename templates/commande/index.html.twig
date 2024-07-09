@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandeController!{% endblock %}
+
+{% block body %}
+{%include "partials/_header.html.twig" %}
+<div class="container">
+    <h1>Recapitulatif Commande</h1>
+    <table class="col-12">
+    <thead>
+        <td></td>
+        <td>Nom</td>
+        <td>Prix unitaire</td>
+        <td>Quantité</td>
+        <td>Total</td>
+    </thead>
+    {% for element in panier %}
+            <tbody>
+            <td><img style="width:50px;"src="{{ asset('uploads/images/' ~ element.article.image) }}" alt="{{element.article.image}}"></td>
+            <td>{{element.article.libellecourt}}</td>
+            <td>{{element.article.prixHT}} €</td>
+            <td>{{element.quantity}} </td>
+            <td>{{element.quantity * element.article.prixHT}} €</td>
+            </tbody>
+            {% else %}
+                <tr>
+                    <td colspan="5">Votre panier et vide</td>
+                </tr>
+        {% endfor %}
+</table>
+    {{ form_errors(form) }}
+
+    {{ form_start(form) }}
+    
+        
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
