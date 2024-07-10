@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Utilisateur;
 use App\Entity\Commande;
 use App\Entity\ComposerDe;
 use App\Form\CommandeType;
@@ -27,6 +28,14 @@ class CommandeController extends AbstractController
             $this->addFlash('message','Votre panier est vide');
             return $this->redirectToRoute('app_accueil');
         }
+        $user = $this->getUser();
+        
+        if (!$user instanceof \App\Entity\Utilisateur) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        // Récupérez la réduction
+        $reduction = $user->getreduction();
         
         $commande = new Commande();
         $form = $this->createForm(CommandeType::class,$commande);
@@ -48,6 +57,12 @@ class CommandeController extends AbstractController
             //si le panier n'est pas vide on crée la commande
             
             $commande->setIdUtilisateur($this->getUser());
+            $commande->setDateCommande(new \DateTime());
+            $commande->setDateFacture(new \DateTime());
+            $commande->setIdFacture(random_int(1,1000000));
+            $commande->setEtatFacture('Payer');
+            $commande->setEtatLivraison('En attente');
+            $commande->setTVA(20.00);
             
             
             
@@ -72,6 +87,7 @@ class CommandeController extends AbstractController
         'form' => $form,
         'panier' => $data,
         'total' => $total,
+        'reduction' => $reduction,
     ]);
         return $this->render('commande/index.html.twig', [
             'controller_name' => 'CommandeController',
