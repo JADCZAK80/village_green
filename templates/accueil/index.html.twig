@@ -16,7 +16,7 @@
     <div class="row">
         {% for rubriques in rubrique %}
             <div class="col-sm-4 col-12 mt-2 mb-2">
-            <a href="{{path('app_sous_rubrique', {'id_rubrique': rubriques.id})}}">
+            <a class="nav-link" href="{{path('app_sous_rubrique', {'id_rubrique': rubriques.id})}}">
                 <div class="card mt-4 pt-4">
                     <div class="d-flex justify-content-center">
                         <img src="{{ asset('uploads/images/' ~ rubriques.image) }}" alt="{{ rubriques.libellecourt}}" width="100">
@@ -34,4 +34,5 @@
         {% endfor %}
     </div>
 </div>
+{%include "partials/_footer.html.twig" %}
 {% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de Confidentialité{% endblock %}
+
+{% block body %}
+{%include "partials/_header.html.twig" %}
+<div class="container ">
+<div class="privacy-policy">
+    <div class="d-flex justify-content-center">
+    <h1>Politique de Confidentialité</h1>
+    </div>
+    <p>Dernière mise à jour : {{ "now"|date("d/m/Y") }}</p>
+
+    <p>
+        Chez <strong>Village Green</strong>, accessible depuis <a href="{{ path('app_accueil') }}">villagegreen.com</a>,
+        l'une de nos principales priorités est la confidentialité de nos visiteurs. Cette politique de confidentialité
+        décrit les types d'informations qui sont collectées et enregistrées par Village Green et comment nous les utilisons.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Informations que nous collectons</h2>
+</div>
+    <p>
+        Nous collectons différentes informations lorsque vous vous inscrivez sur notre site, passez une commande, 
+        vous abonnez à notre newsletter, répondez à un sondage ou remplissez un formulaire. Les informations recueillies 
+        peuvent inclure votre nom, votre adresse e-mail, votre adresse postale et votre numéro de téléphone.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Utilisation des informations</h2>
+</div>
+    <p>
+        Les informations que nous collectons peuvent être utilisées de plusieurs manières, notamment pour :
+    </p>
+    <ul>
+        <li>Personnaliser votre expérience et répondre à vos besoins individuels</li>
+        <li>Améliorer notre site web</li>
+        <li>Améliorer le service client et vos besoins de prise en charge</li>
+        <li>Traiter les transactions de manière rapide et efficace</li>
+        <li>Envoyer des e-mails périodiques (l'adresse e-mail que vous fournissez peut être utilisée pour vous envoyer 
+        des informations, répondre à des demandes de renseignements, et/ou d'autres demandes ou questions)</li>
+    </ul>
+
+<div class="d-flex justify-content-center">
+    <h2>Protection des informations</h2>
+</div>
+    <p>
+        Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. 
+        Nous utilisons des méthodes de cryptage pour protéger les informations sensibles transmises en ligne. Les informations 
+        de carte de crédit ne sont jamais stockées sur nos serveurs.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Divulgation à des tiers</h2>
+</div>
+    <p>
+        Nous ne vendons, n'échangeons et ne transférons pas vos informations personnelles identifiables à des tiers, sauf 
+        si cela est nécessaire pour exécuter des transactions ou pour respecter la loi. Nous pouvons toutefois partager des 
+        informations non personnellement identifiables avec des tiers à des fins de marketing, de publicité ou autres usages.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Consentement</h2>
+</div>
+    <p>
+        En utilisant notre site, vous consentez à notre politique de confidentialité.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Modifications de notre politique de confidentialité</h2>
+</div>
+    <p>
+        Village Green peut mettre à jour cette politique de confidentialité de temps à autre. Nous vous encourageons à consulter 
+        cette page périodiquement pour être informé des modifications. Votre utilisation continue du site après la publication des 
+        modifications constitue votre acceptation de celles-ci.
+    </p>
+
+<div class="d-flex justify-content-center">
+    <h2>Contactez-nous</h2>
+</div>
+    <p>
+        Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à l'adresse suivante :
+    </p>
+    <address>
+        <strong>Village Green</strong><br>
+        Directeur : Pablo Escobar<br>
+        Email : <a href="mailto:contact@villagegreen.com">contact@villagegreen.com</a>
+    </address>
+</div>
+</div>
+{%include "partials/_footer.html.twig" %}
+{% endblock %}
+

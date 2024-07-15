@@ -36,7 +36,7 @@
                             <br>
                         </div>
                             <div class="d-flex justify-content-end pb-2">
-                <a href="{{path('panier_ajouter', {id: articles.id})}}">
+                <a class="nav-link" href="{{path('panier_ajouter', {id: articles.id})}}">
                             <button class="btn btn-success">Ajouter</button>
                 </a>
                             </div>
@@ -45,4 +45,5 @@
         {% endfor %}
     </div>
 </div>
+{%include "partials/_footer.html.twig" %}
 {% endblock %}

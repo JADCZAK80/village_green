@@ -3,6 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+
 {%include "partials/_header.html.twig" %}
 <div class="container">
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -11,25 +12,26 @@
 
     <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+    {{ form_errors(form) }}
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(form) }}
     
-        {{ form_row(registrationForm.nom)}}
+        {{ form_row(form.nom)}}
         
-        {{ form_row(registrationForm.prenom)}}
-        {{ form_row(registrationForm.adresse)}}
-        {{ form_row(registrationForm.codepostal)}}
-        {{ form_row(registrationForm.pays)}}
-        {{ form_row(registrationForm.ville)}}
-        {{ form_row(registrationForm.telephone)}}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+        {{ form_row(form.prenom)}}
+        {{ form_row(form.adresse)}}
+        {{ form_row(form.codepostal)}}
+        {{ form_row(form.pays)}}
+        {{ form_row(form.ville)}}
+        {{ form_row(form.telephone)}}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(form.agreeTerms) }}
 
         <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    {{ form_end(form) }}
 </div>
+{%include "partials/_footer.html.twig" %}
 {% endblock %}
