@@ -671,7 +671,7 @@ class AppFixtures extends Fixture
         $personnel1 -> setRoles(['ROLE_USER','ROLE_CHEF']);
         $personnel1 -> setMatriculePersonnel("FED-4868-FES");
         $personnel1 -> setNom("ALCAPONE");
-        $personnel1 -> setPrénom("Pedro");
+        $personnel1 -> setPrenom("Pedro");
         $personnel1 -> setAdresse("4 rue des lilas");
         $personnel1 -> setTéléphone("07/15/82/72/89");
         $personnel1 -> setService("COMMERCIAL");
@@ -686,7 +686,7 @@ class AppFixtures extends Fixture
         $personnel2 -> setRoles(['ROLE_USER','ROLE_CHEF','ROLE_GESTION']);
         $personnel2 -> setMatriculePersonnel("MAX-6858-LUX");
         $personnel2 -> setNom("LICORNE");
-        $personnel2 -> setPrénom("Magalax");
+        $personnel2 -> setPrenom("Magalax");
         $personnel2 -> setAdresse("13 rue des arc-en-ciel");
         $personnel2 -> setTéléphone("09/12/40/89/69");
         $personnel2 -> setService("GESTION");
@@ -701,7 +701,7 @@ class AppFixtures extends Fixture
         $personnel3 -> setRoles(['ROLE_USER']);
         $personnel3 -> setMatriculePersonnel("POP-0088-POP");
         $personnel3 -> setNom("POPO");
-        $personnel3 -> setPrénom("Eric");
+        $personnel3 -> setPrenom("Eric");
         $personnel3 -> setAdresse("67 rue des déchets");
         $personnel3 -> setTéléphone("07/18/69/71/29");
         $personnel3 -> setService("COMMERCIAL");
@@ -716,7 +716,7 @@ class AppFixtures extends Fixture
         $personnel4 -> setRoles(['ROLE_USER']);
         $personnel4 -> setMatriculePersonnel("UNK-0000-NOW");
         $personnel4 -> setNom("UNKNOW");
-        $personnel4 -> setPrénom("Aline");
+        $personnel4 -> setPrenom("Aline");
         $personnel4 -> setAdresse("1 allée de la plage");
         $personnel4 -> setTéléphone("07/15/82/72/89");
         $personnel4 -> setService("COMMERCIAL");
@@ -731,7 +731,7 @@ class AppFixtures extends Fixture
         $personnel5 -> setRoles(['ROLE_USER','ROLE_CHEF','ROLE_GESTION','ROLE_ADMIN']);
         $personnel5 -> setMatriculePersonnel("ZDE-4568-AZE");
         $personnel5 -> setNom("ESCOBAR");
-        $personnel5 -> setPrénom("Pablo");
+        $personnel5 -> setPrenom("Pablo");
         $personnel5 -> setAdresse("9 rue des coques");
         $personnel5 -> setTéléphone("07/01/02/52/87");
         $personnel5 -> setService("DIRECTION");

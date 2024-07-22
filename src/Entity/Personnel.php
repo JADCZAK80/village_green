@@ -42,7 +42,7 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $prénom = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
@@ -174,14 +174,14 @@ class Personnel implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPrénom(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->prénom;
+        return $this->prenom;
     }
 
-    public function setPrénom(?string $prénom): static
+    public function setPrenom(?string $prenom): static
     {
-        $this->prénom = $prénom;
+        $this->prenom = $prenom;
 
         return $this;
     }
