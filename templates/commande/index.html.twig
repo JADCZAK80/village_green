@@ -1,86 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
+{% block title %}
+  Hello CommandeController!
+{% endblock %}
 
 {% block body %}
-{%include "partials/_header.html.twig" %}
-<div class="container">
+  {% include 'partials/_header.html.twig' %}
+  <div class="container">
     <h1>Recapitulatif Commande</h1>
     <table class="col-12">
-    <thead>
+      <thead>
         <td></td>
         <td>Nom</td>
         <td>Prix unitaire</td>
         <td>Quantité</td>
         <td>Total</td>
-    </thead>
-    {% for element in panier %}
-            <tbody>
-            <td><img style="width:50px;"src="{{ asset('uploads/images/' ~ element.article.image) }}" alt="{{element.article.image}}"></td>
-            <td>{{element.article.libellecourt}}</td>
-            <td>{{element.article.prixHT}} €</td>
-            <td>{{element.quantity}} </td>
-            <td>{{element.quantity * element.article.prixHT}} €</td>
-            </tbody>
-            {% else %}
-        {% endfor %}
-        <tfoot>
-            <tr>
-                <td colspan="3"><strong></strong></td>
-                <td>HT</td>
-                <td><strong> {{ total }} € HT</strong></td>
-                
-            </tr>
-                        <tr>
-                <td colspan="3"><strong></strong></td>
-                        <td>TVA</td>
-                <td><strong> {{ total+total*0.2 }} € TTC</strong></td>
-                
-            </tr>
-                        <tr>
-                <td colspan="3"><strong>Total final</strong></td>
-                {% if reduction is null %}
-                <td>Pas de remise</td>
-                {% else %}
-                    <td>remise {{reduction}} %</td>
-                {% endif %}
-                <td><strong> {{ total+total*0.2-(total*reduction/100) }} € net</strong></td>
-                
-            </tr>
-        </tfoot>
-</table>
-<br>
-{% if reduction is null %}
+      </thead>
+      {% for element in panier %}
+        <tbody>
+          <td>
+            <img style="width:50px;" src="{{ asset('uploads/images/' ~ element.article.image) }}" alt="{{ element.article.image }}" />
+          </td>
+          <td>{{ element.article.libellecourt }}</td>
+          <td>{{ element.article.prixHT }} €</td>
+          <td>{{ element.quantity }}</td>
+          <td>{{ element.quantity * element.article.prixHT }} €</td>
+        </tbody>
+      {% else %}
 
-            {% else %}
-                 <p>La réduction est de : {{reduction}} %</p>
-                 {% endif %}
+      {% endfor %}
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            <strong></strong>
+          </td>
+          <td>HT</td>
+          <td>
+            <strong>{{ total }} € HT</strong>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <strong></strong>
+          </td>
+          <td>TVA</td>
+          <td>
+            <strong>{{ total + total * 0.2 }} € TTC</strong>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <strong>Total final</strong>
+          </td>
+          {% if reduction is null %}
+            <td>Pas de remise</td>
+          {% else %}
+            <td>remise {{ reduction }} %</td>
+          {% endif %}
+          <td>
+            <strong>{{ total + total * 0.2 - total * reduction / 100 }} € net</strong>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <br />
+    {% if reduction is null %}
+
+    {% else %}
+      <p>La réduction est de : {{ reduction }} %</p>
+    {% endif %}
     {{ form_errors(form) }}
 
     {{ form_start(form) }}
-    {{ form_row(form.moyen_paiement)}}
+    {{ form_row(form.moyen_paiement) }}
     <label for="numeroCarte" class="form-label">Numéro de carte</label>
 
-    <input type="text" name="numeroCarte" id="numeroCarte" class="form-control mb-2">
-    {{ form_row(form.adresse_facturation)}}
-    {{ form_row(form.adresse_livraison)}}
-    <input type="hidden"
-    name="{{ field_name(form.montant_commande_HT) }}"
-    value="{{total}}"
-    class="form-control"
->
-    <input type="hidden"
-    name="{{ field_name(form.montant_commande_TTC) }}"
-    value="{{ total+total*0.2-(total*reduction/100) }}"
-    class="form-control"
->
+    <input type="text" name="numeroCarte" id="numeroCarte" class="form-control mb-2" />
+    {{ form_row(form.adresse_facturation) }}
+    {{ form_row(form.adresse_livraison) }}
+    <input type="hidden" name="{{ field_name(form.montant_commande_HT) }}" value="{{ total }}" class="form-control" />
+    <input type="hidden" name="{{ field_name(form.montant_commande_TTC) }}" value="{{ total + total * 0.2 - total * reduction / 100 }}" class="form-control" />
 
-    
-
-
-        
-        <button type="submit" class="btn btn-success ">Commander</button>
+    <button type="submit" class="btn btn-success" title="valider la commande">Commander</button>
     {{ form_end(form) }}
-</div>
-{%include "partials/_footer.html.twig" %}
+  </div>
+  {% include 'partials/_footer.html.twig' %}
 {% endblock %}

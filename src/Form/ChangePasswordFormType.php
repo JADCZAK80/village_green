@@ -53,7 +53,9 @@ class ChangePasswordFormType extends AbstractType
         ])
 
 
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Changer le mot de passe',
+            ])
         ;
     }
 
