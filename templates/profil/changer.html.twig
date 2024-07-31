@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de Confidentialité{% endblock %}
+
+{% block body %}
+{%include "partials/_header.html.twig" %}
+<div class="container">
+<h2> {{app.user.Nom}} {{app.user.Prenom}} </h2>
+<h1>Changer mot de passe</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.currentPassword) }}
+    {{ form_row(form.newPassword) }}
+    {{ form_row(form.confirmNewPassword) }}
+{{ form_end(form) }}
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+</div>
+
+{%include "partials/_footer.html.twig" %}
+{% endblock %}

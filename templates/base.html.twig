@@ -1,7 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
+
+    <!--Encodage de la page -->
         <meta charset="UTF-8">
+       
+        <!--balise meta servant à décrire le contenue du site (et afficher sur la page des navigateur) -->
+        <meta name="description" content="Village green site de vente de matériel musicale pour pro et particulier">
+
+        <!-- Balise de mot clé n'est plus trop utilisé aujourd'hui mais server au réferencement des sites (SEO) avant-->
+        <meta name="keywords" content="Village green, musique, instrument, instrument de musique, piano, guitare, triangle, xylophone, instrument à vent, instrument à percusions, instrument à corde">
+
+        <!-- nom de l'auteur du site-->
+        <meta name="author" content="Jadczak Christopher"> 
+
+        <!--donne un nom à l'onglet , doit etre pertinent , c'est ce nom que les moteur de recherche afficheront -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🎼</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}

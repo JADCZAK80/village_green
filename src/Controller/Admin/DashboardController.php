@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Commande;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -44,5 +45,6 @@ class DashboardController extends AbstractDashboardController
     {
 
         yield MenuItem::linkToCrud('Article', 'fas fa-list', Article::class);
+        yield MenuItem::linkToCrud('Commande', 'fas fa-info-circle', Commande::class);
     }
 }
