@@ -6,6 +6,7 @@
 {%include "partials/_header.html.twig" %}
 <div class="container">
 <h2> {{app.user.Nom}} {{app.user.Prenom}} </h2>
+<a href="/historique" class="btn btn-info" title="Achat effectuer">Commande passer</a><br>
 <a href="{{ path('profil_changer_mdp') }}" class="btn btn-info" title="changer de mot de passe">Changer de mot de passe</a>
 </div>
 

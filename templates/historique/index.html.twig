@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique Commande{% endblock %}
+
+{% block body %}
+{%include "partials/_header.html.twig" %}
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>Liste des commandes passées</h1>
+    </div>
+    {% for commande in commandes %}
+        <div class="commande">
+            <h2>Articles dans la commande N° {{commande.id}} :</h2>
+            {% for detail in commande.commandeDetails %}
+                <p><img src="{{ asset('uploads/images/' ~ detail.article.image) }} " alt="{{ detail.article.image }}" width="100">{{ detail.article.libellecourt }} - Quantité : {{ detail.quantite }}</p>
+            {% else %}
+                <p>Aucun article dans cette commande.</p>
+            {% endfor %}
+            <div class="d-flex justify-content-end">
+            <p>Montant Total: {{ commande.montantcommandettc }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{%include "partials/_footer.html.twig" %}
+{% endblock %}
+
