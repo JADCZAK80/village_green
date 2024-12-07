@@ -127,7 +127,7 @@ class AppFixtures extends Fixture
         $article1 -> setLibelle("Diamètre: 10\", Corps en bois, Peau naturelle clouée (non accordable), 9 paires de cymbalette");
         $article1 -> setImage("tambourin.png");
         $article1 -> setPrixHT(11.90);
-        $article1 -> setIdSousRubrique($sousRubrique1);
+        $article1 -> setSousRubrique($sousRubrique1);
 
         $manager -> persist($article1);
 
@@ -136,7 +136,7 @@ class AppFixtures extends Fixture
         $article2 -> setLibelle("Fût parabolique en fibre de verre, Pédale d'accordage fixe, Accordage fin");
         $article2 -> setImage("timbale.png");
         $article2 -> setPrixHT(2100.90);
-        $article2 -> setIdSousRubrique($sousRubrique1);
+        $article2 -> setSousRubrique($sousRubrique1);
 
         $manager -> persist($article2);
 
@@ -145,7 +145,7 @@ class AppFixtures extends Fixture
         $article3 -> setLibelle("Modèle 38241095, Hauteur: env. 500 mm, Diamètre: 240-260 mm, Fût en acajou, Peau de chèvre naturelle");
         $article3 -> setImage("djembe.png");
         $article3 -> setPrixHT(70.99);
-        $article3 -> setIdSousRubrique($sousRubrique1);
+        $article3 -> setSousRubrique($sousRubrique1);
 
         $manager -> persist($article3);
 
@@ -156,7 +156,7 @@ class AppFixtures extends Fixture
         $article4 -> setLibelle("Format de table, 3 octaves, Tessiture: Do5 - Do8, La = 442 Hz, Cadre en bois");
         $article4 -> setImage("xylophone.png");
         $article4 -> setPrixHT(298.99);
-        $article4 -> setIdSousRubrique($sousRubrique2);
+        $article4 -> setSousRubrique($sousRubrique2);
 
         $manager -> persist($article4);
 
@@ -165,7 +165,7 @@ class AppFixtures extends Fixture
         $article5 -> setLibelle("1 1/2 octave, Tessiture: Do5 - Fa6, La = 442 Hz, Tubes standards 1,25\"");
         $article5 -> setImage("carillons.png");
         $article5 -> setPrixHT(5499.00);
-        $article5 -> setIdSousRubrique($sousRubrique2);
+        $article5 -> setSousRubrique($sousRubrique2);
 
         $manager -> persist($article5);
 
@@ -174,7 +174,7 @@ class AppFixtures extends Fixture
         $article6 -> setLibelle("Triangle 15cm, Batte incl.");
         $article6 -> setImage("triangle.png");
         $article6 -> setPrixHT(5499.00);
-        $article6 -> setIdSousRubrique($sousRubrique2);
+        $article6 -> setSousRubrique($sousRubrique2);
 
         $manager -> persist($article6);
 
@@ -185,7 +185,7 @@ class AppFixtures extends Fixture
         $article7 -> setLibelle("Fabriquée en Europe, Table en épicéa massif, Fond bombé en érable massif, Touche ronde en ébène");
         $article7 -> setImage("contrebasse.png");
         $article7 -> setPrixHT(2490.00);
-        $article7 -> setIdSousRubrique($sousRubrique3);
+        $article7 -> setSousRubrique($sousRubrique3);
 
         $manager -> persist($article7);
 
@@ -194,7 +194,7 @@ class AppFixtures extends Fixture
         $article8 -> setLibelle("Table et fond en contreplaqué, Manche en érable, Touche en érable teinté noir");
         $article8 -> setImage("violoncelle.png");
         $article8 -> setPrixHT(410.49);
-        $article8 -> setIdSousRubrique($sousRubrique3);
+        $article8 -> setSousRubrique($sousRubrique3);
 
         $manager -> persist($article8);
 
@@ -203,7 +203,7 @@ class AppFixtures extends Fixture
         $article9 -> setLibelle("Set bon marché comprenant un violon étudiant, un archet et un étui, Table en épicéa massif");
         $article9 -> setImage("violon.png");
         $article9 -> setPrixHT(70.00);
-        $article9 -> setIdSousRubrique($sousRubrique3);
+        $article9 -> setSousRubrique($sousRubrique3);
 
         $manager -> persist($article9);
 
@@ -214,7 +214,7 @@ class AppFixtures extends Fixture
         $article10 -> setLibelle("29 cordes, Tessiture: Sol3 - Sol, Corps et cadre en hêtre, Leviers de demi-ton");
         $article10 -> setImage("harpe.png");
         $article10 -> setPrixHT(550.00);
-        $article10 -> setIdSousRubrique($sousRubrique4);
+        $article10 -> setSousRubrique($sousRubrique4);
 
         $manager -> persist($article10);
 
@@ -223,7 +223,7 @@ class AppFixtures extends Fixture
         $article11 -> setLibelle("36 cordes, 31 leviers de demi-ton, Tessiture: Do1 - Do6, Corps en frêne");
         $article11 -> setImage("harpeC.png");
         $article11 -> setPrixHT(550.00);
-        $article11 -> setIdSousRubrique($sousRubrique4);
+        $article11 -> setSousRubrique($sousRubrique4);
 
         $manager -> persist($article11);
 
@@ -232,7 +232,7 @@ class AppFixtures extends Fixture
         $article12 -> setLibelle("Electro-acoustique, Série Custom Line Kahuna, Pan coupé, Corps en acacia");
         $article12 -> setImage("ukulele.png");
         $article12 -> setPrixHT(111.15);
-        $article12 -> setIdSousRubrique($sousRubrique4);
+        $article12 -> setSousRubrique($sousRubrique4);
 
         $manager -> persist($article12);
 
@@ -243,7 +243,7 @@ class AppFixtures extends Fixture
         $article13 -> setLibelle("Avec accompagnement automatique, 88 touches lestées, Mécanique à marteaux, 500 sons");
         $article13 -> setImage("pianoNum.png");
         $article13 -> setPrixHT(555.55);
-        $article13 -> setIdSousRubrique($sousRubrique5);
+        $article13 -> setSousRubrique($sousRubrique5);
 
         $manager -> persist($article13);
 
@@ -252,7 +252,7 @@ class AppFixtures extends Fixture
         $article14 -> setLibelle("Equipé du système Aures,Mécanique Millennium III avec pièces en carbone ABS, Pupitre de 100 cm");
         $article14 -> setImage("pianoDroit.png");
         $article14 -> setPrixHT(13100.90);
-        $article14 -> setIdSousRubrique($sousRubrique5);
+        $article14 -> setSousRubrique($sousRubrique5);
 
         $manager -> persist($article14);
 
@@ -261,7 +261,7 @@ class AppFixtures extends Fixture
         $article15 -> setLibelle("Mécanique Millennium III avec pièces en ABS Styran, Pédale sostenuto, Têtes des marteaux avec feutre");
         $article15 -> setImage("pianoAQue.png");
         $article15 -> setPrixHT(10100.99);
-        $article15 -> setIdSousRubrique($sousRubrique5);
+        $article15 -> setSousRubrique($sousRubrique5);
 
         $manager -> persist($article15);
 
@@ -272,7 +272,7 @@ class AppFixtures extends Fixture
         $article16 -> setLibelle("Modèle \"Student\", Tuba 4/4 compact, 4 palettes, Rotules");
         $article16 -> setImage("tuba.png");
         $article16 -> setPrixHT(1800.99);
-        $article16 -> setIdSousRubrique($sousRubrique6);
+        $article16 -> setSousRubrique($sousRubrique6);
 
         $manager -> persist($article16);
 
@@ -281,7 +281,7 @@ class AppFixtures extends Fixture
         $article17 -> setLibelle("Branche d'embouchure en laiton doré, Pistons en acier inoxydable, Perce: ML");
         $article17 -> setImage("trompette.png");
         $article17 -> setPrixHT(149.99);
-        $article17 -> setIdSousRubrique($sousRubrique6);
+        $article17 -> setSousRubrique($sousRubrique6);
 
         $manager -> persist($article17);
 
@@ -290,7 +290,7 @@ class AppFixtures extends Fixture
         $article18 -> setLibelle("Corps en laiton, Perce ML: 12,2 mm, Diamètre du pavillon: 205 mm");
         $article18 -> setImage("trombone.png");
         $article18 -> setPrixHT(189.99);
-        $article18 -> setIdSousRubrique($sousRubrique6);
+        $article18 -> setSousRubrique($sousRubrique6);
 
         $manager -> persist($article18);
 
@@ -301,7 +301,7 @@ class AppFixtures extends Fixture
         $article19 -> setLibelle("Clé de Fa avant, Clé de Fa# aigu, Corps, bocal et clétage en laiton");
         $article19 -> setImage("saxophone.png");
         $article19 -> setPrixHT(555.55);
-        $article19 -> setIdSousRubrique($sousRubrique7);
+        $article19 -> setSousRubrique($sousRubrique7);
 
         $manager -> persist($article19);
 
@@ -310,7 +310,7 @@ class AppFixtures extends Fixture
         $article20 -> setLibelle("Nouvelle version améliorée, En grenadille, Système allemand");
         $article20 -> setImage("clarinette.png");
         $article20 -> setPrixHT(889.99);
-        $article20 -> setIdSousRubrique($sousRubrique7);
+        $article20 -> setSousRubrique($sousRubrique7);
 
         $manager -> persist($article20);
 
@@ -319,7 +319,7 @@ class AppFixtures extends Fixture
         $article21 -> setLibelle("Tête, corps et mécanique en maillechort argenté, Mi mécanique, Plateaux creux");
         $article21 -> setImage("flûteT.png");
         $article21 -> setPrixHT(889.99);
-        $article21 -> setIdSousRubrique($sousRubrique7);
+        $article21 -> setSousRubrique($sousRubrique7);
 
         $manager -> persist($article21);
 

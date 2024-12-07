@@ -118,12 +118,12 @@ class Article
         return $this;
     }
 
-    public function getIdSousRubrique(): ?SousRubrique
+    public function getSousRubrique(): ?SousRubrique
     {
         return $this->sous_rubrique;
     }
 
-    public function setIdSousRubrique(?SousRubrique $sous_rubrique): static
+    public function setSousRubrique(?SousRubrique $sous_rubrique): static
     {
         $this->sous_rubrique = $sous_rubrique;
 

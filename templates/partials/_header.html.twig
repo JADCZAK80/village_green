@@ -22,6 +22,9 @@
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CHEF') %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_article_index') }}">Gérer les Articles</a></li>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item"> 
                    <a class="nav-link" href="{{ path('admin') }}" title="Gestion">Gestion
